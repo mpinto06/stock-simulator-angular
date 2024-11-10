@@ -1,0 +1,26 @@
+{
+    "itemsLogged":  [
+        
+    ],
+    "itemsNotLogged": [
+        {   
+            "icon": "home",
+            "text": "Inicio",
+            "path": "/",
+            "over": false      
+        },
+        {
+            "icon": "login",
+            "text": "Iniciar Sesión",
+            "path": "/login",
+            "iconUrl": "",
+            "over": false
+        },
+        {
+            "icon": "register",
+            "text": "Registrar Usuario",
+            "path": "/register",
+            "over": false
+        }
+    ]
+}

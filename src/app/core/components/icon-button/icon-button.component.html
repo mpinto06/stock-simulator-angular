@@ -1,0 +1,14 @@
+<div class="icon-button"
+    (mouseup)="iconSource = icons[button.iconPathName + 'active']"
+    (mouseout)="iconSource = icons[button.iconPathName + 'active']"
+    (mouseover)="iconSource = icons[button.iconPathName + 'hover' ]"
+    (mousedown)="iconSource = icons[button.iconPathName + 'active']"
+    (click)="onClicked.emit()">
+    <img [ngClass]="button.extra?.img?.style"
+      [src]="iconSource"
+      [alt]="button.alt">
+    <span *ngIf="button.iconLabel"
+      class="icon-button__text"
+      [innerHTML]="button.iconLabel">
+    </span>
+  </div>

@@ -1,0 +1,22 @@
+@import '_constants';
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: $menu-width-closed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $stock-footer-font;
+  height: 50px;
+  background-color: $stock-background-footer;
+  padding: 0 20px;
+  z-index: 2;
+  width: calc(100% - $menu-width-closed);
+
+
+  &__copyright {
+    text-align: center;
+    color: $stock-font-color;
+  }
+}

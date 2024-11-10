@@ -1,0 +1,14 @@
+<div class="menu-container" [ngClass]="{'close': !openMenu}">  
+    @for (item of itemsMenu; track $index; ) {
+        <div class="item" [ngClass]="{'active': currentUrl(item.path), 'hover': item.over}"
+        (mouseover)="item.over = true"
+        (mouseleave)="item.over = false">
+            <div class="image-container">
+                <img [src]="currentUrl(item.path) || !item.over ? icons[item.icon + '_active'] : icons[item.icon + '_hover']" [alt]="item.text">
+            </div>
+            <div class="title-container">
+                <a href="" [innerHTML]="item.text"></a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,9 @@
+{
+    "logo": "assets/logo.svg",
+    "login_active": "assets/icons/login_active.svg",
+    "login_hover": "assets/icons/login_hover.svg",
+    "register_active": "assets/icons/register_active.svg",
+    "register_hover":"assets/icons/register_hover.svg",
+    "home_active":"assets/icons/home_active.svg",
+    "home_hover":"assets/icons/home_hover.svg"
+}

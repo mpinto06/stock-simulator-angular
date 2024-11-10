@@ -1,0 +1,21 @@
+@import '_constants';
+
+.standard-layout {
+    position: absolute;
+    top: $header-height;
+    width: 100%;
+    padding-left: $menu-width-open;
+    padding-bottom: 50px;
+    min-height: calc(100vh - $header-height);
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+    background-image:  linear-gradient($stock-strips 2px, transparent 2px), linear-gradient(90deg, $stock-strips 2px, transparent 2px),  linear-gradient($stock-strips 1px, transparent 1px), linear-gradient(90deg, $stock-strips 1px, $stock-background-primary 1px);
+    background-size: 300px 300px, 300px 300px, 60px 60px, 60px 60px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    &.close {
+      padding-left: $menu-width-closed;
+    }
+
+
+
+}

@@ -1,0 +1,133 @@
+@import '_constants';
+
+.header {
+  background-color: $stock-background-secondary;
+  width: 100%;
+  height: $header-height;
+  color: $stock-font-color;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  z-index: 4;
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 150px;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    .title {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    a {
+      font-size: 18px;
+
+      &.green {
+        color: $stock-primary;
+      }
+
+      &.green-light {
+        color: $stock-secondary;
+      }
+
+    }
+  }
+
+  .menu-toggle-container {
+    padding: 0 30px;
+    .menu-toggle {
+      height: 30px;
+      width: 30px;
+      position: relative;
+      cursor: pointer;
+    
+      &__middle-line {
+        background-color: $stock-font-color;
+        height: 2px;
+        width: 30px;
+        border-radius: 2px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    
+        &::before {
+          content: "";
+          background-color: $stock-font-color;
+          height: 2px;
+          width: 100%;
+          border-radius: 2px;
+          position: absolute;
+          bottom: 8px;
+          left: 0;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+        }
+    
+        &::after {
+          content: "";
+          background-color: $stock-font-color;
+          height: 2px;
+          width: 100%;
+          border-radius: 2px;
+          position: absolute;
+          top: 8px;
+          left: 0;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+        }
+      }
+    
+      &--active {
+        .menu-toggle__middle-line {
+          -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+          width: 0;
+          margin-left: 32px;
+    
+          &::before {
+            bottom: 5px;
+            left: 10px;
+            width: 16px;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg)
+          }
+    
+          &::after {
+            top: 5px;
+            left: 10px;
+            width: 16px;
+            -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg)
+          }
+        }
+      }
+    }
+  }
+}

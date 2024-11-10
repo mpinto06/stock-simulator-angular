@@ -1,0 +1,65 @@
+@import '_constants';
+
+.menu-container {
+  position: fixed;
+  background-color: $stock-background-primary;
+  width: $menu-width-open;
+  min-height: calc(100vh - $header-height);
+  font-family: $stock-font;
+  top: 0;
+  left: 0;
+  padding-top: $header-height;
+  box-shadow: 3px -1px 5px 0px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  z-index: 3;
+
+  &.close {
+    width: $menu-width-closed;
+  }
+
+  .item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+    height: $menu-icon-height;
+    position: relative;
+
+    .image-container {
+      padding: 0 30px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .title-container {
+      a {
+        color: $stock-font-color;
+      }
+    }
+
+    &:hover {
+      background-color: $stock-background-hover;
+
+      .title-container {
+        a {
+          color: $stock-secondary;
+        }
+      }
+    }
+
+    &.active {
+      border-left: solid 3px $stock-third;
+      .title-container {
+        a {
+          color: $stock-primary;
+        }
+      }
+    }
+
+
+  }
+}
