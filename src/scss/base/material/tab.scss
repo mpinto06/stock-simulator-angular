@@ -1,0 +1,86 @@
+::ng-deep {
+    .mat-mdc-tab-group {
+        // .mat-mdc-tab .mdc-tab__ripple::before {
+        //     background-color: transparent !important;
+        // }
+        .mat-mdc-tab-header {
+
+            // Contenedor de labels
+            .mat-mdc-tab-label-container {
+                .mat-mdc-tab-list {
+                    .mat-mdc-tab-labels {
+                        border-bottom: 1px solid $stock-third;
+                        color:  $stock-third;
+                        
+                        .mat-mdc-tab {
+                            letter-spacing: normal;
+                            font-family: $stock-font;
+                            font-size: 16px;
+                            font-weight: normal;
+
+                            .mdc-tab__ripple {
+                                &::before {
+                                    background-color: transparent !important;
+                                }
+                            }
+                  
+                            .mdc-tab__content {
+                                .mdc-tab__text-label {
+                                    color: $stock-font-color;
+                                }
+                            }
+
+                            .mdc-tab-indicator {
+                                top: 1px;
+
+                                .mdc-tab-indicator__content--underline {
+                                    border-color: $stock-primary;
+                                    border-width: 3px;
+                                }
+
+                            }
+
+                            &.mdc-tab {
+                                padding-right: 16px;
+                                padding-left: 16px;
+
+                                &--active {
+                                    .mdc-tab__text-label {
+                                        color: $stock-primary;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                background: none;
+                            }
+
+
+
+
+                        }
+                    }
+                }
+            }
+
+            // Botones de paginación
+            .mat-mdc-tab-header-pagination {
+
+
+                //Botón Izquierdo
+                &.mat-mdc-tab-header-pagination-before {}
+
+                //Botón Derecho
+                &.mat-mdc-tab-header-pagination-after {}
+
+                &.mat-mdc-tab-header-pagination-before,
+                &.mat-mdc-tab-header-pagination-after {
+                    .mat-mdc-tab-header-pagination-chevron {
+                        border-color: $stock-primary;
+                    }
+                }
+            }
+        }
+    }
+}
