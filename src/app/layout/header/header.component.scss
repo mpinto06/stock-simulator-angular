@@ -19,7 +19,7 @@
     height: 100%;
     width: 100%;
     padding-left: 100px;
-    padding-right: 150px;
+    padding-right: 50px;
   }
   .logo-container {
     display: flex;
@@ -37,23 +37,27 @@
     }
   }
 
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    width: 350px;
-    a {
-      font-size: 18px;
-
-      &.green {
-        color: $stock-primary;
+  .right-side {
+    margin-right: 100px;
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      width: 350px;
+      a {
+        font-size: 18px;
+  
+        &.green {
+          color: $stock-primary;
+        }
+  
+        &.green-light {
+          color: $stock-secondary;
+        }
+  
       }
-
-      &.green-light {
-        color: $stock-secondary;
-      }
-
     }
   }
+  
 
   .menu-toggle-container {
     padding: 0 30px;

@@ -1,0 +1,56 @@
+<div id="register">
+    <div class="register-container">
+        <div class="register-card">
+            <div class="title-container">
+                <div class="title">
+                    Registrar usuario
+                </div>
+                <div class="description">
+                    Para acceder a <b>Stock Simulator</b> por primera vez
+                </div>
+            </div>     
+            <form [formGroup]="form" class="form-container">
+                <div class="name-container">
+                    <mat-form-field class="name-field">
+                        <mat-label>Nombre</mat-label>
+                        <input formControlName="firstName" matInput>
+                        <mat-error>Ingrese su nombre</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="name-field">
+                        <mat-label>Apellido</mat-label>
+                        <input formControlName="lastName" matInput>
+                        <mat-error>Ingrese su apellido</mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-form-field>
+                    <mat-label>Usuario</mat-label>
+                    <input formControlName="username" matInput>
+                    @if (form.get('username')?.hasError('required')) {
+                        <mat-error>Ingrese un usuario</mat-error>
+                    }
+                    @else if (form.get('username')?.hasError('usernameTaken')) {
+                        <mat-error>El usuario ya existe</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input  formControlName="password" type="password"  matInput>
+                    @if (form.get('password')?.hasError('required')) {
+                        <mat-error>Ingrese una contraseña</mat-error>
+                        
+                    }
+                    @else if (form.get('password')?.hasError('passwordStrength')) {
+                        <mat-error>
+                            Necesitas una contraseña de 8 o más caracteres con letras y números.
+                        </mat-error>
+                    }
+                </mat-form-field>
+            </form>
+
+            <div class="button-container">
+                <button class="button-wrapper primary" (click)="registerUser()" [disabled]="!validForm">Registrar</button>  
+            </div>
+        </div>
+       
+    </div>
+</div>

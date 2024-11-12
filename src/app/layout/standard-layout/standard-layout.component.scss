@@ -3,9 +3,8 @@
 .standard-layout {
     position: absolute;
     top: $header-height;
-    width: 100%;
+    width: calc(100vw - $menu-width-open);
     padding-left: $menu-width-open;
-    padding-bottom: 50px;
     min-height: calc(100vh - $header-height);
     -webkit-transition: all 0.6s ease;
     transition: all 0.6s ease;
@@ -14,6 +13,7 @@
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
     &.close {
       padding-left: $menu-width-closed;
+      width: calc(100vw - $menu-width-closed);
     }
 
 

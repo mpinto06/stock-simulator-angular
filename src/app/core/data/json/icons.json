@@ -1,9 +1,19 @@
 {
     "logo": "assets/logo.svg",
+    "monitor": "assets/monitor.png",
+    "phone": "assets/phone.png",
     "login_active": "assets/icons/login_active.svg",
     "login_hover": "assets/icons/login_hover.svg",
     "register_active": "assets/icons/register_active.svg",
     "register_hover":"assets/icons/register_hover.svg",
     "home_active":"assets/icons/home_active.svg",
-    "home_hover":"assets/icons/home_hover.svg"
+    "home_hover":"assets/icons/home_hover.svg",
+    "logout_active": "assets/icons/logout_active.svg",
+    "logout_hover": "assets/icons/logout_hover.svg",
+    "summary_active": "assets/icons/summary_active.svg",
+    "summary_hover": "assets/icons/summary_hover.svg",
+    "buy_active": "assets/icons/buy_active.svg",
+    "buy_hover": "assets/icons/buy_hover.svg",
+    "sell_active":"assets/icons/sell_active.svg",
+    "sell_hover":"assets/icons/sell_hover.svg"
 }

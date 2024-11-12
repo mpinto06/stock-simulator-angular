@@ -1,6 +1,6 @@
 export interface IconButtonInterface {
     alt: string;
     iconLabel?: string;
-    iconPathName: string;
+    iconName: string;
     extra?: any;
 }

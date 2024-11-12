@@ -12,7 +12,7 @@ import { AppUtilService } from '../../services/app-util.service';
   templateUrl: './icon-button.component.html',
   styleUrl: './icon-button.component.scss',
 })
-export class IconButtonComponent {
+export class IconButtonComponent implements OnInit{
   
   @Input() button!: IconButtonInterface;
 
@@ -21,12 +21,16 @@ export class IconButtonComponent {
 
   /* variables */
   icons: any;
-  iconSource: String;
+  iconSource: string = '';
   constructor(
     private appUtils: AppUtilService
   ) {
-    this.icons = this.appUtils.icons;
-    this.iconSource = this.icons[this.button.iconPathName + '_active']
   }
 
+  ngOnInit(): void {
+    this.icons = this.appUtils.icons;
+    console.log(this.button.iconName + '_active')
+    this.iconSource = this.icons[this.button.iconName + '_active']
+    console.log(this.iconSource)
+  }
 }

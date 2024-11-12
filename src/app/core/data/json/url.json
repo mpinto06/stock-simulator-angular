@@ -1,0 +1,4 @@
+{
+    "registerUser": "/user/register",
+    "loginUser": "/user/login"
+}

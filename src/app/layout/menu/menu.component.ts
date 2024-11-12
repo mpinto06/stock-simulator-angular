@@ -67,6 +67,12 @@ export class MenuComponent implements OnInit {
   currentUrl(url: string): boolean {
     return url == this.router.url;
   }
+
+  redirectUrl(url: string): void {
+    if (!this.currentUrl(url)) {
+      this.router.navigate([url]).catch();
+    }
+  }
     
 
 }

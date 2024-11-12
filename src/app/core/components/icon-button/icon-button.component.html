@@ -1,8 +1,8 @@
 <div class="icon-button"
-    (mouseup)="iconSource = icons[button.iconPathName + 'active']"
-    (mouseout)="iconSource = icons[button.iconPathName + 'active']"
-    (mouseover)="iconSource = icons[button.iconPathName + 'hover' ]"
-    (mousedown)="iconSource = icons[button.iconPathName + 'active']"
+    (mouseup)="iconSource = icons[button.iconName + '_active']"
+    (mouseout)="iconSource = icons[button.iconName + '_active']"
+    (mouseover)="iconSource = icons[button.iconName + '_hover' ]"
+    (mousedown)="iconSource = icons[button.iconName + '_active']"
     (click)="onClicked.emit()">
     <img [ngClass]="button.extra?.img?.style"
       [src]="iconSource"

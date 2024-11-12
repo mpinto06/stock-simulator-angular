@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   padding-top: $header-height;
-  box-shadow: 3px -1px 5px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: $container-box-shadow;
   overflow: hidden;
   -webkit-transition: all 0.6s ease;
   transition: all 0.6s ease;
@@ -36,7 +36,7 @@
     }
 
     .title-container {
-      a {
+      .title {
         color: $stock-font-color;
       }
     }
@@ -45,7 +45,7 @@
       background-color: $stock-background-hover;
 
       .title-container {
-        a {
+        .title {
           color: $stock-secondary;
         }
       }
@@ -54,7 +54,7 @@
     &.active {
       border-left: solid 3px $stock-third;
       .title-container {
-        a {
+        .title {
           color: $stock-primary;
         }
       }

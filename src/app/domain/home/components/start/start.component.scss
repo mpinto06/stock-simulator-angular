@@ -1,8 +1,36 @@
-#start {
-  height: 1000px;
-  width: 100%;
+@import 'constants';
+@import 'base';
 
-  .text-container {
+#start {
+  height: calc(100vh - $header-height);
+  width: 100%;
+  position: relative;
+
+  .main-container {
+    z-index: 2;
+    position: absolute;
     display: flex;
+    justify-items: center;    
+    align-items: center;
+    flex-direction: column; 
+    width: 100%;
+    top: 100vh;
+    padding-top: 30px;
+    animation: 1s slideUp forwards, 2s fadeIn forwards;
+
+      .title {
+        font-size: 60px;
+        color: $stock-font-color;
+        max-width: 600px;
+        text-wrap: pretty;
+      }
+    
+  
+    .image-container {
+      img {
+        width: 1000px;
+        height: auto;
+      }
+    }
   }
 }

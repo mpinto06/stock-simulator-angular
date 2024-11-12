@@ -1,0 +1,49 @@
+<div id="login">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="title-container">
+                <div class="title">
+                    Iniciar sesión
+                </div>
+                <div class="description">
+                    Para acceder a <b>Stock Simulator</b>
+                </div>
+            </div>     
+            <form [formGroup]="form" class="form-container">
+                <mat-form-field>
+                    <mat-label>Usuario</mat-label>
+                    <input formControlName="username"  matInput>
+                    @if (form.get('username')?.hasError('required')) {
+                        <mat-error>Ingrese un usuario</mat-error>
+                    }
+                    @else if (form.get('username')?.hasError('userNotFound')) {
+                        <mat-error>Usuario no existe</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Contraseña</mat-label>
+                    <input formControlName="password" type="password" matInput>
+                    @if (form.get('password')?.hasError('required')) {
+                        <mat-error>Ingrese una contraseña</mat-error>
+                        
+                    }
+                    @else if (form.get('password')?.hasError('passwordStrength')) {
+                        <mat-error>
+                            Necesitas una contraseña de 8 o más caracteres con letras y números.
+                        </mat-error>
+                    }
+                    @else if (form.get('password')?.hasError('incorrectPassword')) {
+                        <mat-error>
+                            Contraseña incorrecta
+                        </mat-error>
+                    }
+                </mat-form-field>
+            </form>
+
+            <div class="button-container">
+                <button class="button-wrapper primary" (click)="loginUser()" [disabled]="!validForm">Ingresar</button>  
+            </div>
+        </div>
+       
+    </div>
+</div>

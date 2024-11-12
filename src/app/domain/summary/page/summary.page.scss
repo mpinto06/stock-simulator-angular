@@ -1,0 +1,15 @@
+@import 'constants';
+
+#summary-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #232332;
+  margin-top: 80px;
+  padding: 30px;
+  top: 100vh;
+  animation: 1s fadeIn forwards;
+
+  .title-container {
+    font-size: 30px;
+  }
+}

@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { LoadingComponent } from "../../core/components/loading/loading.component";
 import { LoadingService } from '../../core/services/loading.service';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { MenuComponent } from '../menu/menu.component';
 import { MenuService } from '../../core/services/menu.service';
 import { FooterComponent } from '../footer/footer.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UserService } from '../../core/services/user.service';
+import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
   selector: 'stock-standard-layout',
@@ -25,16 +27,30 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class StandardLayoutComponent implements OnInit{ 
   openMenu: boolean = true;
+  loggedPaths = ['/summary', '7buy', '/sell']
 
   constructor(
     private loadingService: LoadingService,
     private menuService: MenuService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private router: Router
   ) { 
   }
   ngOnInit(): void {
     this.openMenu = this.menuService.openMenu;
     this.subscribeEvents();
+    if (this.userService.currentUser != null && this.loggedPaths.includes(this.router.url)) {
+      this.notificationService.login();
+    }
+    else {
+      this.userService.removeUser();
+      this.notificationService.logout();
+      if (this.loggedPaths.includes(this.router.url)) {
+        this.router.navigate(['/home']).catch();
+      }
+    }
   }
 
   subscribeEvents(): void {

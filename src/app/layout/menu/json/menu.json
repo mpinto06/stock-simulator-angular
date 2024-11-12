@@ -1,19 +1,35 @@
 {
     "itemsLogged":  [
-        
+        {   
+            "icon": "summary",
+            "text": "Resumen financiero",
+            "path": "/summary",
+            "over": false      
+        },
+        {
+            "icon": "buy",
+            "text": "Compra de Acciones",
+            "path": "/buy",
+            "over": false
+        },
+        {
+            "icon": "sell",
+            "text": "Venta de Acciones",
+            "path": "/sell",
+            "over": false
+        }  
     ],
     "itemsNotLogged": [
         {   
             "icon": "home",
             "text": "Inicio",
-            "path": "/",
+            "path": "/home",
             "over": false      
         },
         {
             "icon": "login",
             "text": "Iniciar Sesión",
             "path": "/login",
-            "iconUrl": "",
             "over": false
         },
         {

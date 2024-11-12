@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, type OnInit } from '@angular/core';
+import { AppUtilService } from '../../../../core/services/app-util.service';
 
 @Component({
   selector: 'stock-about',
@@ -12,6 +13,13 @@ import { Component, type OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  phoneIcon: string;
+
+  constructor(
+    private appUtilService: AppUtilService
+  ) {
+    this.phoneIcon = this.appUtilService.icons['phone'];
+  }
   ngOnInit(): void { }
 
 }

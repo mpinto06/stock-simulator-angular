@@ -6,8 +6,13 @@
   flex-direction: column;
   cursor: pointer;
 
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
   &__text {
-    font-size: $stock-h5;
+    font-size: $stock-h6;
     padding-top: 8px;
     color: $stock-primary;
     font-family: $stock-font;
@@ -15,6 +20,7 @@
     line-height: 16px;
 
   }
+
 
   &:hover {
     .icon-button__text {

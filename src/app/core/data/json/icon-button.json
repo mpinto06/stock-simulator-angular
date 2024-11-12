@@ -1,0 +1,7 @@
+{
+    "logoutIcon": {
+        "alt": "cerrar sesión",
+        "iconLabel": "Cerrar Sesión",
+        "iconName": "logout"
+    } 
+}

@@ -9,8 +9,10 @@ export class LoadingService {
   @Output() showEvent: EventEmitter<boolean> = new EventEmitter();
 
   hide() {
-    this.isShown = false;
-    this.showEvent.emit(this.isShown);
+    setTimeout(() => {
+      this.isShown = false;
+      this.showEvent.emit(this.isShown);
+    }, 800);
   }
 
   /**

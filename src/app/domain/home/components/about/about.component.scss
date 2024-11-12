@@ -1,4 +1,45 @@
+@import '_constants';
+
 #about {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
+  position: relative;
+
+  .main-container {
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    justify-items: center;    
+    align-items: center;
+    
+    padding: 0 50px;
+
+      .title {
+        font-size: 50px;
+        color: $stock-font-color;
+        
+      }
+
+      .description {
+        margin-top: 8px;
+        font-size: 22px;
+        color: $stock-font-color;
+        
+
+        b {
+          font-weight: 600;
+          color: $stock-primary;
+        }
+      }
+
+
+    
+  
+    .image-container {
+      img {
+        width: 400px;
+        height: auto;
+      }
+    }
+  }
 }
