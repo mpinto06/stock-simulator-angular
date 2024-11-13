@@ -1,0 +1,59 @@
+@import 'constants';
+@import 'base';
+
+#buy-page {
+    .form-container {
+        .stock-info-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .payment-info-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 60px;
+            width: 100%;
+        }
+    }
+
+    .button-container {
+        margin-top: 12px;
+        width: 100%;
+        display: flex;
+        gap: 30px;
+        justify-content: flex-end;
+    }
+
+    .verification-container {
+        margin: 0 20px;
+        width: 100%;
+    
+        .verification-row {
+          
+          .col {
+            display: inline-grid;
+            width: 33.33333333333%;
+            padding-bottom: 24px;
+            word-wrap: break-word;
+            word-break: break-all;
+
+
+            .label {
+                font-size: 20px;
+                color: $stock-primary;
+            }
+
+            .value {
+                font-size: 18px;
+                b {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+            }
+          }
+        }
+       
+      }
+}

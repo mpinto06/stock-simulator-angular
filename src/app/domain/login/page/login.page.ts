@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
         password: this.form.get('password')?.value,
         
       }
-      this.userService.loginUser(userRequest).then((response) => {
+      this.userService.loginUserRequest(userRequest).then((response) => {
         if (response.code == 0) {
           console.log(response)
           const user: UserResponseInterface = {
@@ -71,7 +71,7 @@ export class LoginPage implements OnInit {
             email: response.email,
             verified: response.verified,
           }
-          this.userService.saveUser(user);
+          this.userService.loginUser(user);
         }
         else if (response.code == 1) {
           this.form.get('password')?.setErrors({'incorrectPassword': true});

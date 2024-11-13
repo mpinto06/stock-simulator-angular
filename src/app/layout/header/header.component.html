@@ -15,14 +15,14 @@
             <img [src]="mainLogo" alt="Logo">
         </div>
         @if (userLogged) {
-            <stock-icon-button [button]="logoutIcon"></stock-icon-button>
+            <stock-icon-button [button]="logoutIcon" (onClicked)="logout()"></stock-icon-button>
         }
         @else {
             <div class="right-side">
                 <nav class="navbar">
-                    <a class="green" href="">Inicio</a>
-                    <a class="green-light" href="">Sobre Nosotros</a>
-                    <a href="">Contacto</a>
+                    <a (click)="scroll('start')">Inicio</a>
+                    <a (click)="scroll('about')">Sobre Nosotros</a>
+                    <!-- <a >Contacto</a> -->
                 </nav>
                 
             </div>

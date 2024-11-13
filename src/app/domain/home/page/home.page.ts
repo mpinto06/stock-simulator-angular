@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, type OnInit } from '@angular/core';
 import { AboutComponent } from '../components/about/about.component';
 import { StartComponent } from '../components/start/start.component';
 import { ContactComponent } from '../components/contact/contact.component';
@@ -18,6 +18,7 @@ import { ContactComponent } from '../components/contact/contact.component';
 })
 export class HomePage implements OnInit {
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+   }
 
 }

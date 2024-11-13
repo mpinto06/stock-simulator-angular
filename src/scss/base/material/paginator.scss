@@ -1,0 +1,14 @@
+::ng-deep {
+    mat-paginator {
+        &.mat-mdc-paginator {
+            background-color: #3a3b47;
+            color: $stock-font-color;
+            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .mat-list-item {
+            outline: none;
+        }
+    }
+}

@@ -27,7 +27,7 @@ import { NotificationService } from '../../core/services/notification.service';
 })
 export class StandardLayoutComponent implements OnInit{ 
   openMenu: boolean = true;
-  loggedPaths = ['/summary', '7buy', '/sell']
+  loggedPaths = ['/summary', '/buy', '/sell']
 
   constructor(
     private loadingService: LoadingService,
@@ -45,9 +45,10 @@ export class StandardLayoutComponent implements OnInit{
       this.notificationService.login();
     }
     else {
-      this.userService.removeUser();
+      this.userService.removeUserStorage();
       this.notificationService.logout();
       if (this.loggedPaths.includes(this.router.url)) {
+        console.log('aqui?')
         this.router.navigate(['/home']).catch();
       }
     }

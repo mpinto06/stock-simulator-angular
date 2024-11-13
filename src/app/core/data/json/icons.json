@@ -15,5 +15,7 @@
     "buy_active": "assets/icons/buy_active.svg",
     "buy_hover": "assets/icons/buy_hover.svg",
     "sell_active":"assets/icons/sell_active.svg",
-    "sell_hover":"assets/icons/sell_hover.svg"
+    "sell_hover":"assets/icons/sell_hover.svg",
+    "eye_active": "assets/icons/eye_active.svg",
+    "eye_hover": "assets/icons/eye_hover.svg"
 }

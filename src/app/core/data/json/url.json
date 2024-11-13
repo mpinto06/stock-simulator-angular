@@ -1,4 +1,7 @@
 {
     "registerUser": "/user/register",
-    "loginUser": "/user/login"
+    "loginUser": "/user/login",
+    "allStocks": "/stock/all",
+    "stockEOD": "/stock/{ticker}/month",
+    "verifyVisa": "/transaction/verify-visa"
 }

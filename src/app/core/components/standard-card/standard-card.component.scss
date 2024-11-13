@@ -1,0 +1,50 @@
+@import 'constants';
+@import 'base';
+
+.standard-card {
+  width: 100%;
+  position: relative;
+
+  .card-container {
+    position: absolute;
+    top: 100vh;
+    display: flex;
+    justify-content: start;
+    animation: 1s slideUp forwards, 2s fadeIn forwards;
+    width: 100%;
+
+    .card {
+      margin-top: 50px;
+      margin-left: 50px;
+      min-width: 800px;
+      min-height: 300px;
+      background-color: #232332;
+      box-shadow: $container-box-shadow;
+      border-radius: 15px;
+      padding: 15px;
+
+
+      .title-container {
+        display: flex;
+        justify-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        
+        .title {
+          font-size: 38px;
+        }
+
+        .description {
+          
+                  
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .green {
+    color: $stock-primary;
+  }  
+}

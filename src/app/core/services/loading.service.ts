@@ -12,7 +12,7 @@ export class LoadingService {
     setTimeout(() => {
       this.isShown = false;
       this.showEvent.emit(this.isShown);
-    }, 800);
+    }, 1000);
   }
 
   /**

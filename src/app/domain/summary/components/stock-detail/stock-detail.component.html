@@ -1,0 +1,31 @@
+<div id="stock-detail">
+    <div class="stock-detail-container">
+        <div class="title-container">
+            <div class="title">
+                {{ stock.name }}
+            </div>
+            <div class="ticker">
+                {{ stock.ticker }}
+            </div>
+        </div> 
+        <div class="detail-container">
+            <div class="amount">
+                {{ lastClose }}
+                <b>USD</b>
+            </div>
+            <div class="difference" [ngClass]="{'green': difference > 0 , 'red': difference < 0}">
+                {{ formattedDifference }}
+            </div>
+        </div>
+        <div class="date-container">
+            <div class="date">
+                Cierre {{ formatDateToAMPM }}
+            </div>
+        </div>  
+    </div>
+    <p-chart type="line" [data]="basicData" [options]="options" width="80%" />
+    <div class="button-container">
+        <button class="button-wrapper primary" (click)="backMenu.emit()">Regresar</button>
+    </div>
+</div>
+

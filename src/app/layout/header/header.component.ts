@@ -6,6 +6,8 @@ import { AppUtilService } from '../../core/services/app-util.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { IconButtonComponent } from "../../core/components/icon-button/icon-button.component";
 import { IconButtonInterface } from '../../core/components/icon-button/interface/icon-button.interface';
+import { UserService } from '../../core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'stock-header',
@@ -28,7 +30,9 @@ export class HeaderComponent  implements OnInit{
     private menuService: MenuService,
     private destroyRef: DestroyRef,
     private appUtilsService: AppUtilService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private userService: UserService,
+    private router: Router
   ) {
     this.openMenu = this.menuService.openMenu;
     this.mainLogo = this.appUtilsService.icons.logo;
@@ -57,5 +61,24 @@ export class HeaderComponent  implements OnInit{
   toggle(): void {
     console.log('aaa?')
     this.menuService.toggle()
+  }
+
+  logout(): void {
+    this.userService.logoutUser();
+  }
+
+  scroll(id: string): void {
+    const element = document.getElementById(id);
+    if (element != null) {
+      element.scrollIntoView({'behavior': 'smooth', 'block': 'end'})
+    }
+    else {
+      this.router.navigate(['/home']).then( () => {
+        const element = document.getElementById(id);
+        if (element != null) {
+          element.scrollIntoView({'behavior': 'smooth', 'block': 'end'})
+        }
+      });
+    }  
   }
 }

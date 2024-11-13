@@ -30,6 +30,16 @@ export const routes: Routes = [
                 path: 'summary',
                 loadComponent: () => import('./domain/summary/page/summary.page')
                   .then(m => m.SummaryPage)
+            },
+            {
+                path: 'buy',
+                loadComponent: () => import('./domain/buy/page/buy.page')
+                  .then(m => m.BuyPage)
+            },
+            {
+                path: 'sell',
+                loadComponent: () => import('./domain/sell/page/sell.page')
+                  .then(m => m.SellPage)
             }
             
         ]

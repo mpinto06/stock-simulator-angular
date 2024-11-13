@@ -1,0 +1,29 @@
+::ng-deep {
+    mat-select {
+        &.mat-mdc-select {
+            color: $stock-font-color;
+
+            .mat-mdc-select-trigger {
+                .mat-mdc-select-arrow-wrapper {
+                    .mat-mdc-select-arrow {
+                        color: $stock-third;
+                    }
+                }
+            }
+        }
+    }
+
+    .mat-mdc-select-panel {
+        background-color: #3a3b47  !important;
+
+        .mat-mdc-option, .mdc-list-item {
+            color: $stock-font-color;
+            background-color: #3a3b47
+        }
+        .mdc-list-item--selected, .mat-mdc-option-active {
+            background-color: #50515c;
+        }
+    }
+
+  
+}

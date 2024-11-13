@@ -1,0 +1,41 @@
+::ng-deep {
+    mat-stepper {
+        &.mat-stepper-horizontal {
+            background-color: transparent;
+
+            .mat-horizontal-stepper-wrapper {
+                .mat-horizontal-stepper-header-container {
+                    .mat-step-header {
+                        pointer-events: none !important;
+                        .mat-ripple {
+                            display: none;
+                        }
+                        .mat-step-icon {
+                            &.mat-step-icon-selected {
+                                background-color: $stock-primary;
+                            }
+                        }
+                        .mat-step-label {
+                            &.mat-step-label-selected {
+                                .mat-step-text-label {
+                                    color: $stock-font-color;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+
+                    .mat-step-header:hover {
+                        background-color: transparent;
+                    }
+                    .mat-step-header:active {
+                        background-color: transparent;
+                    }
+                    .mat-step-header:focus {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }   
+    }
+}

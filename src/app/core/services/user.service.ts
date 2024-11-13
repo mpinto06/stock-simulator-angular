@@ -28,27 +28,36 @@ export class UserService {
     });
   }  
   
-  registerUser(request: UserRegisterRequestInterface): Promise<any> {
+  registerUserRequest(request: UserRegisterRequestInterface): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.registerUser}`;
     const headers = this.headers;
     return firstValueFrom(this.http.post(url, request, {headers} ));
   }
   
-  loginUser(request: UserLoginRequestInterface): Promise<any> {
+  loginUserRequest(request: UserLoginRequestInterface): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.loginUser}`;
     const headers = this.headers;
     return firstValueFrom(this.http.post(url, request, {headers} ));
   }
 
-  saveUser(user: UserResponseInterface): void {
-    this.storageService.setItem('currentUser', user);
+  loginUser(user: UserResponseInterface): void {
+    this.saveUserStorage(user);
     this.notificationService.login();
     this.router.navigate(['/summary']).catch();
   }
 
-  removeUser(): void {
-    this.storageService.removeItem('currentUser');
+  logoutUser(): void {
+    this.removeUserStorage();
     this.notificationService.logout();
+    this.router.navigate(['/home']).catch();
+  }
+
+  saveUserStorage(user: UserResponseInterface): void {
+    this.storageService.setItem('currentUser', user);
+  }
+
+  removeUserStorage(): void {
+    this.storageService.clear();
   }
 
   get currentUser(): UserResponseInterface {

@@ -3,5 +3,13 @@
         "alt": "cerrar sesión",
         "iconLabel": "Cerrar Sesión",
         "iconName": "logout"
-    } 
+    },
+    "buyIcon": {
+        "alt": "comprar acción",
+        "iconName": "buy"
+    },
+    "eyeIcon": {
+        "alt": "ver acción",
+        "iconName": "eye"
+    }  
 }

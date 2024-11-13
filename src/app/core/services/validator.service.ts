@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { StockResponseInterface } from '../data/interface/response/stock-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,41 @@ export class ValidatorService {
       else return { passwordStrength: true };
     };
   }
+  
+  greaterThanZeroValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      return value > 0 ? null : { greaterThanZero: true };
+    };
+  }
+
+
+  containsStockValidator(stockList: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value.toUpperCase() as string;
+      return stockList.includes(value) ? null : { stockNotAvailable : true };
+   };
+  }
+
+
+  creditCardDateFormatValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      const isValidDateFormat = /^(0[1-9]|1[0-2])\/\d{2}$/.test(value);
+      return isValidDateFormat ? null : { invalidDateFormat: true };
+    };
+  }
+
+
+  cvcValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      const isValidCVC = /^\d{3}$/.test(value);
+      console.log(isValidCVC);
+      return isValidCVC ? null : { invalidCVC: true };
+  };
+}
+
   
 
 }

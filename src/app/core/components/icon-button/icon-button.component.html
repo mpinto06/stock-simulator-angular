@@ -1,4 +1,4 @@
-<div class="icon-button"
+<div class="icon-button" [ngClass]="{'no-label': !button.iconLabel}"
     (mouseup)="iconSource = icons[button.iconName + '_active']"
     (mouseout)="iconSource = icons[button.iconName + '_active']"
     (mouseover)="iconSource = icons[button.iconName + '_hover' ]"

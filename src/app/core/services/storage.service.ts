@@ -10,11 +10,13 @@ export class StorageService {
   // Save data to localStorage
   setItem(key: string, value: any): void {
     localStorage.setItem(key, JSON.stringify(value));
+    console.log(key, localStorage.getItem(key));
   }
 
   // Retrieve data from localStorage
   getItem(key: string): any {
     const value = localStorage.getItem(key);
+    console.log(value);
     return value ? JSON.parse(value) : null;
   }
 

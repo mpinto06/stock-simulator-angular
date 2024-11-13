@@ -3,7 +3,7 @@
 
 #summary-page {
   width: 96%;
-  min-height: 100vh;
+  min-height:  calc(120vh);
   background-color: #232332;
   margin-top: 80px;
   padding: 30px;
@@ -17,5 +17,16 @@
 
   .tab-container {
     margin-right: 30px;
-  }
+
+    .table {
+      margin-top: 60px;
+
+      .icons {
+        display: flex;
+        gap: 25px;
+      }
+      
+    }
+    margin-bottom: 100px;
+  } 
 }

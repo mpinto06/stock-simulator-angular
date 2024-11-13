@@ -65,7 +65,7 @@ export class RegisterPage implements OnInit {
         password: this.form.get('password')?.value,
         
       }
-      this.userService.registerUser(userRequest).then((response) => {
+      this.userService.registerUserRequest(userRequest).then((response) => {
         if (response.code == 0) {
           const user: UserResponseInterface = {
             firstName: response.firstName,
@@ -74,7 +74,7 @@ export class RegisterPage implements OnInit {
             email: response.email,
             verified: response.verified,
           }
-          this.userService.saveUser(user);
+          this.userService.saveUserStorage(user);
           console.log(this.userService.currentUser);
         }
         else if (response.code == 1) {

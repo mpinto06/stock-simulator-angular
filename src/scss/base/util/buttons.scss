@@ -21,6 +21,23 @@
         border: 3px solid #9ad6ee;
     }
 
+    &.secondary:enabled {
+        background-color: transparent;
+        border: 3px solid $stock-primary;
+        color: $stock-font-color;
+    }
+
+    &.secondary:hover:enabled{ 
+        border: 3px solid $stock-secondary;
+        background-color: transparent;
+        color: $stock-font-color;
+    }
+
+    &.secondary:active:enabled {
+        background-color: transparent;
+        border: 3px solid $stock-third;
+    }
+
     &:disabled {
         background-color: #a6a6a6;
         opacity: 0.3;
