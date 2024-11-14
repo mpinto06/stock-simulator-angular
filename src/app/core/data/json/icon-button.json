@@ -11,5 +11,9 @@
     "eyeIcon": {
         "alt": "ver acción",
         "iconName": "eye"
-    }  
+    },
+    "sellIcon": {
+        "alt": "vender acción",
+        "iconName": "sell"
+    }   
 }

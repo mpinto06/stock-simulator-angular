@@ -16,6 +16,8 @@ import { StockDetailComponent } from "../components/stock-detail/stock-detail.co
 import { StockEODResponseInterface } from '../../../core/data/interface/response/stock-eod-response.interface';
 import { Router } from '@angular/router';
 import { DataFlowService } from '../../../core/services/data-flow.service';
+import { OwnStockResponseInterface } from '../../../core/data/interface/response/own-stock-response.interface';
+import { TransactionResponseInterface } from '../../../core/data/interface/response/transaction-response.interface';
 
 
 @Component({
@@ -37,12 +39,17 @@ import { DataFlowService } from '../../../core/services/data-flow.service';
 export class SummaryPage  implements AfterViewInit, OnInit {
   
   displayedColumns: string[] = ['ticker', 'name', 'description', 'detail'];
+  displayedColumns2: string[] = ['ticker', 'name', 'quantity', 'detail'];
+  displayedColumns3: string[] = ['ticker', 'amount', 'quantity', 'type', 'date'];
   availableStocksDataSource = new MatTableDataSource<StockResponseInterface>([]);
+  adquiredStocksDataSource = new MatTableDataSource<OwnStockResponseInterface>([]);
+  transactionsDataSource = new MatTableDataSource<TransactionResponseInterface>([]);
   myControl = new FormControl('initial value');
   selectedTicker: string = '';
   
   buyIcon: IconButtonInterface;
   eyeIcon: IconButtonInterface;
+  sellIcon: IconButtonInterface;
 
   viewDetail: boolean = false;
 
@@ -56,6 +63,7 @@ export class SummaryPage  implements AfterViewInit, OnInit {
   ) {
     this.buyIcon = JSON_ICON_BUTTON.buyIcon;
     this.eyeIcon = JSON_ICON_BUTTON.eyeIcon;
+    this.sellIcon = JSON_ICON_BUTTON.sellIcon;
   }
 
   ngOnInit(): void {
@@ -75,6 +83,15 @@ export class SummaryPage  implements AfterViewInit, OnInit {
         this.stockService.saveStockAvailable(response.stockDTOList)
       }
       this.loadingService.hide();
+    })
+    this.stockService.getOwnStocksRequest()
+    .then( (response) => {
+      this.adquiredStocksDataSource.data = response;
+    })
+
+    this.stockService.getBuySellRequest()
+    .then( (response) => {
+      this.transactionsDataSource.data = response;
     })
   }
 
@@ -151,6 +168,17 @@ export class SummaryPage  implements AfterViewInit, OnInit {
     else {
       this.dataFlowService.preloadTicker(stockResponse.ticker);
       this.router.navigate(['/buy'])
+    }
+  }
+
+  formattedType(type: string): string {
+    switch(type) {
+      case 'buy':
+        return 'Compra';
+      case 'sell':
+        return 'Venta';
+      default:
+        return '';
     }
   }
   

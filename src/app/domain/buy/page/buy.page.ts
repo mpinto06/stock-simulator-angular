@@ -20,6 +20,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CapitalCaseDirective } from '../../../core/directives/capital-case.directive';
 import { DataFlowService } from '../../../core/services/data-flow.service';
 import { LoadingService } from '../../../core/services/loading.service';
+import { BuyStockRequest } from '../../../core/data/interface/request/buy-stock-request.interface';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'stock-buy',
@@ -52,6 +54,7 @@ export class BuyPage implements OnInit {
   tickerList: string[] = [];
   close: number = 0;
   total: number = 0;
+  quantity: number = 0;
 
 
   constructor(
@@ -61,7 +64,8 @@ export class BuyPage implements OnInit {
     private stockService: StockService,
     private destroyRef: DestroyRef,
     private dataFlowService: DataFlowService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private userService: UserService
   ) {
     this.availablestocks = this.stockService.getStockAvailable();
     this.setTickerList();
@@ -160,9 +164,25 @@ export class BuyPage implements OnInit {
         this.stock = this.stockService.getStock(this.formGroup.get('ticker')?.value);
         console.log(this.stock)
         this.close = this.stock.stockEODList[0].close;
-        this.total = this.close * Number(this.formGroup.get('amount')?.value as string);
+        this.quantity = Number(this.formGroup.get('amount')?.value as string);
+        this.total = this.close * this.quantity;
         stepper.next();
     })}
+  }
+
+  buyStock(stepper: MatStepper): void {
+    const buyStock: BuyStockRequest = {
+      'amount': this.total,
+      'name': this.stock?.name as string,
+      'quantity': this.quantity,
+      'ticker': this.stock?.ticker as string,
+      'username': this.userService.currentUser.username
+    }
+    this.stockService.buyStock(buyStock).then((response) => {
+      if (response.code == 0) {
+        stepper.next();
+      }
+    })
   }
 }
 

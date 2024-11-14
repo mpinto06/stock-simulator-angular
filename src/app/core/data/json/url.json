@@ -3,5 +3,8 @@
     "loginUser": "/user/login",
     "allStocks": "/stock/all",
     "stockEOD": "/stock/{ticker}/month",
-    "verifyVisa": "/transaction/verify-visa"
+    "verifyVisa": "/transaction/verify-visa",
+    "buyStock": "/transaction/buy",
+    "ownStock": "/stock/ownedstocks/{user}",
+    "transactions": "/transaction/buy-sell"
 }
