@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { StockResponseInterface } from '../data/interface/response/stock-response.interface';
+import { OwnStockResponseInterface } from '../data/interface/response/own-stock-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class ValidatorService {
       return value > 0 ? null : { greaterThanZero: true };
     };
   }
+
 
 
   containsStockValidator(stockList: string[]): ValidatorFn {

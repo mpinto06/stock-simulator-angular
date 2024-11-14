@@ -72,7 +72,7 @@
                     <th mat-header-cell *matHeaderCellDef> Venta y Detalle</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="icons">
-                            <stock-icon-button [button]="sellIcon" (onClicked)="buyStock(element)"></stock-icon-button>
+                            <stock-icon-button [button]="sellIcon" (onClicked)="sellStock(element)"></stock-icon-button>
                             <stock-icon-button [button]="eyeIcon" (onClicked)="viewStockDetail(element)"></stock-icon-button>
                         </div>   
                     </td>

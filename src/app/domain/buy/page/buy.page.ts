@@ -125,6 +125,7 @@ export class BuyPage implements OnInit {
           this.stock = this.stockService.getStock(this.formGroup.get('ticker')?.value);
           this.close = this.stock.stockEODList[0].close;
           this.total = this.close * Number(this.formGroup.get('amount')?.value as string);
+          this.quantity = Number(this.formGroup.get('amount')?.value as string);
           stepper.next();
         }
         else {
@@ -162,7 +163,6 @@ export class BuyPage implements OnInit {
         }
         this.stockService.saveStockEOD(stockResponse, stockDetailList);
         this.stock = this.stockService.getStock(this.formGroup.get('ticker')?.value);
-        console.log(this.stock)
         this.close = this.stock.stockEODList[0].close;
         this.quantity = Number(this.formGroup.get('amount')?.value as string);
         this.total = this.close * this.quantity;

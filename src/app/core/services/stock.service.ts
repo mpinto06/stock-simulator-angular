@@ -10,6 +10,7 @@ import { StockResponseInterface } from '../data/interface/response/stock-respons
 import { StockInterface } from '../data/interface/stock.interface';
 import { BuyStockRequest } from '../data/interface/request/buy-stock-request.interface';
 import { UserService } from './user.service';
+import { SellStockRequestInterface } from '../data/interface/request/sell-stock-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,12 @@ export class StockService {
     return firstValueFrom(this.http.post(url, buyRequest, {headers}))
   }
 
+  sellStock(sellRequest: SellStockRequestInterface): Promise<any> {
+    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.sellStock}`
+    const headers = this.headers;
+    return firstValueFrom(this.http.post(url, sellRequest, {headers}))
+  }
+
   verifyVisaCard(cardNumber: string): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.verifyVisa}?cardNumber=${cardNumber}`
     const headers = this.headers;
@@ -86,9 +93,6 @@ export class StockService {
   }
 
   getStock(ticker: string): StockInterface {
-    console.log(ticker);
-    console.log(this.storageService.getItem(ticker))
-    console.log(this.storageService.getItem('hola'))
     return this.storageService.getItem(ticker) as StockInterface;
   }
 

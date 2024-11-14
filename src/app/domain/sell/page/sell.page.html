@@ -1,1 +1,127 @@
-<p>page works!</p>,
+<div id="sell-page">
+    <stock-standard-card [standardCard]="standardCard">
+       <ng-container card-content>
+        <mat-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="formGroup" [completed]="false">
+    <form  [formGroup]="formGroup" class="form-container">
+      <ng-template matStepLabel>Llena datos de tu venta</ng-template>
+      <div class="stock-info-container">
+        <mat-form-field>
+          <mat-label>Ticker</mat-label>
+          <input matInput formControlName="ticker" stockCapitalCase>
+          @if (formGroup.get('ticker')?.hasError('required')) {
+            <mat-error>Ingrese el símbolo de la acción</mat-error>
+          }
+          @else if (formGroup.get('ticker')?.hasError('stockNotAvailable')) {
+              <mat-error>Acción no disponible</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cantidad</mat-label>
+          <input type="tel" stockOnlyNumber oninput="validity.valid||(value='');" matInput formControlName="amount">
+          @if (formGroup.get('amount')?.hasError('required')) {
+            <mat-error>Ingrese la cantidad a vender</mat-error>
+          }
+          @else if (formGroup.get('amount')?.hasError('greaterThanZero')) {
+            <mat-error>La cantidad debe ser mayor a 0</mat-error>
+          }
+          @else if (formGroup.get('amount')?.hasError('notEnoughStocks')) {
+            <mat-error>No posee suficientes acciones</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div class="payment-info-container">
+        <mat-form-field>
+          <mat-label>Email <img src="assets/zelle_logo.png" class="zelle" alt=""></mat-label>
+          <input type="email" matInput formControlName="email">
+          @if (formGroup.get('email')?.hasError('required')) {
+            <mat-error>Ingrese el email asociado a su Zelle</mat-error>
+          }
+          @else if (formGroup.get('email')?.hasError('email')) {
+            <mat-error>Email inválido</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="button-container">
+          <button  (click)="redirectToSummary()" class="button-wrapper secondary" >Cancelar</button>
+          <button [disabled]="!formValid" class="button-wrapper primary"  (click)="getStockEOD(stepper)">Continuar</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step  [editable]="false">
+    <ng-template matStepLabel>Verifique su venta</ng-template>
+    <div class="verification-container">
+      <div class="verification-row">
+        <div class="col">
+          <div class="label">
+            Símbolo
+          </div>
+          <div class="value">
+            {{ formGroup.get('ticker')?.value }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="label">
+            Nombre de la Empresa
+          </div>
+          <div class="value">
+            {{ stock?.name }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="label">
+            Sector
+          </div>
+          <div class="value">
+            {{ stock?.description }}
+          </div>
+        </div>
+      </div>
+      <div class="verification-row">
+        <div class="col">
+          <div class="label">
+            Cantidad
+          </div>
+          <div class="value">
+            {{ formGroup.get('amount')?.value }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="label">
+            Valor
+          </div>
+          <div class="value">
+            {{ close.toFixed(2) }}
+            <b>USD</b>
+          </div>
+        </div>
+        <div class="col">
+          <div class="label">
+            Precio Total:
+          </div>
+          <div class="value">
+            {{ total.toFixed(2) }}
+            <b>USD</b>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="button-container">
+        <button  matStepperPrevious class="button-wrapper secondary" >Regresar</button>
+        <button  class="button-wrapper primary" (click)="sellStock(stepper)"  matStepperNext>Vender</button>
+    </div>
+  </mat-step>
+  <mat-step >
+    <ng-template matStepLabel>Venta realizada con éxito</ng-template>
+    <div class="success-message">
+      ¡Su operación ha sido exitosa!
+    </div>
+     <div class="button-container">
+      <button class="button-wrapper primary" (click)="redirectToSummary()">Regresar</button>
+    </div> 
+  </mat-step>
+</mat-stepper>
+       </ng-container>    
+    </stock-standard-card>
+</div>

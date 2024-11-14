@@ -6,5 +6,6 @@
     "verifyVisa": "/transaction/verify-visa",
     "buyStock": "/transaction/buy",
     "ownStock": "/stock/ownedstocks/{user}",
-    "transactions": "/transaction/buy-sell"
+    "transactions": "/transaction/buy-sell",
+    "sellStock": "/transaction/sell"
 }

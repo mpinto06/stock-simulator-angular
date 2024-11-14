@@ -171,6 +171,11 @@ export class SummaryPage  implements AfterViewInit, OnInit {
     }
   }
 
+  sellStock(stockResponse: StockResponseInterface) {
+    this.dataFlowService.preloadTicker(stockResponse.ticker)
+    this.router.navigate(['/sell'])
+  }
+
   formattedType(type: string): string {
     switch(type) {
       case 'buy':
