@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { DataFlowService } from '../../../core/services/data-flow.service';
 import { OwnStockResponseInterface } from '../../../core/data/interface/response/own-stock-response.interface';
 import { TransactionResponseInterface } from '../../../core/data/interface/response/transaction-response.interface';
+import { UserService } from '../../../core/services/user.service';
 
 
 @Component({
@@ -50,6 +51,7 @@ export class SummaryPage  implements AfterViewInit, OnInit {
   buyIcon: IconButtonInterface;
   eyeIcon: IconButtonInterface;
   sellIcon: IconButtonInterface;
+  userFirstName: string = '';
 
   viewDetail: boolean = false;
 
@@ -59,11 +61,13 @@ export class SummaryPage  implements AfterViewInit, OnInit {
     private stockService: StockService,
     private loadingService: LoadingService,
     private router: Router,
-    private dataFlowService: DataFlowService
+    private dataFlowService: DataFlowService,
+    private userService: UserService
   ) {
     this.buyIcon = JSON_ICON_BUTTON.buyIcon;
     this.eyeIcon = JSON_ICON_BUTTON.eyeIcon;
     this.sellIcon = JSON_ICON_BUTTON.sellIcon;
+    this.userFirstName = this.userService.currentUser.firstName;
   }
 
   ngOnInit(): void {
@@ -98,6 +102,8 @@ export class SummaryPage  implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.availableStocksDataSource.filter = filterValue.trim().toLowerCase();
+    this.adquiredStocksDataSource.filter = filterValue.trim().toLowerCase();
+    this.transactionsDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   viewStockDetail(stockResponse: StockResponseInterface) {

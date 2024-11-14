@@ -178,10 +178,14 @@ export class BuyPage implements OnInit {
       'ticker': this.stock?.ticker as string,
       'username': this.userService.currentUser.username
     }
+    this.loadingService.show();
     this.stockService.buyStock(buyStock).then((response) => {
       if (response.code == 0) {
         stepper.next();
       }
+    })
+    .finally( () => {
+      this.loadingService.hide();
     })
   }
 }

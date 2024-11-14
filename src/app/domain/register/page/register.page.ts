@@ -74,8 +74,7 @@ export class RegisterPage implements OnInit {
             email: response.email,
             verified: response.verified,
           }
-          this.userService.saveUserStorage(user);
-          console.log(this.userService.currentUser);
+          this.userService.loginUser(user);
         }
         else if (response.code == 1) {
           this.form.get('username')?.setErrors({'usernameTaken': true});

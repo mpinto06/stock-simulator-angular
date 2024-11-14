@@ -12,7 +12,15 @@
 
   .title-container {
     font-size: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+  }
+
+  .name-container {
+    font-size: 18px;
+    margin-bottom: 20px;
+    b {
+      color: $stock-primary;
+    }
   }
 
   .tab-container {
