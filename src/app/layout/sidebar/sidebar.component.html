@@ -31,12 +31,14 @@
                     {{ userUsername }}
                 </div>      
             </div>
-            <div class="button-container">
-                @if (!userVerified) {
-                    <button class="button-wrapper primary" (click)="verifyUser()">Verificar Usuario</button>
-                }
-                <button class="button-wrapper primary" (click)="editUser()">Editar Usuario</button>
-            </div>
+            @if (!userAdmin) {
+                <div class="button-container">
+                    @if (!userVerified) {
+                        <button class="button-wrapper primary" (click)="verifyUser()">Verificar Usuario</button>
+                    }
+                    <button class="button-wrapper primary" (click)="editUser()">Editar Usuario</button>
+                </div>
+            }
         </div>
     }
 </div>

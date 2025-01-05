@@ -4,4 +4,5 @@ export interface UserResponseInterface {
     username: string;
     email: string;
     verified: boolean;
+    admin: boolean;
 }

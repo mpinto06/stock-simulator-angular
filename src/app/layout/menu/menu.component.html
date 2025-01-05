@@ -8,7 +8,9 @@
                 <img [src]="currentUrl(item.path) || !item.over ? icons[item.icon + '_active'] : icons[item.icon + '_hover']" [alt]="item.text">
             </div>
             <div class="title-container">
-                <div class="title" [innerHTML]="item.text"></div>
+                @if (openMenu) {
+                    <div class="title" [innerHTML]="item.text"></div>
+                }
             </div>
         </div>
     }

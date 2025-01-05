@@ -58,6 +58,9 @@ export class EditPage implements OnInit {
 
   ngOnInit(): void { 
     this.subscribeEvents();
+    if (this.currentUser.admin) {
+      this.standardCard.message = "adminUser";
+    }
   }
 
 

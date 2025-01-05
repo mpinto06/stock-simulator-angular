@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { LoadingComponent } from "../../core/components/loading/loading.component";
 import { LoadingService } from '../../core/services/loading.service';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { MenuComponent } from '../menu/menu.component';
 import { MenuService } from '../../core/services/menu.service';
@@ -11,6 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserService } from '../../core/services/user.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { SidebarComponent } from "../sidebar/sidebar.component";
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'stock-standard-layout',
@@ -37,7 +38,7 @@ export class StandardLayoutComponent implements OnInit{
     private destroyRef: DestroyRef,
     private userService: UserService,
     private notificationService: NotificationService,
-    private router: Router
+    private router: Router,
   ) { 
   }
   ngOnInit(): void {
@@ -62,5 +63,12 @@ export class StandardLayoutComponent implements OnInit{
     .subscribe(( value: boolean) => {
       this.openMenu = value;
     })
+
+    this.router.events
+      .subscribe((event: any) => {
+        if (event instanceof NavigationEnd) {
+          window.scrollTo(0, 0);
+        }
+      });
   }
 } 

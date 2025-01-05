@@ -10,5 +10,9 @@
     "editSuccess": {
         "title": "Edición exitosa",
         "description": "Los datos del usuario han sido actualizados exitosamente."
+    },
+    "adminUser": {
+        "title": "Usuario administrador",
+        "description": "Esta operación solo puede ser realizada por un usuario dentro de la plataforma. "
     }
 }

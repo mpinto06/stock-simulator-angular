@@ -2,6 +2,7 @@
     mat-tab-body {
         &.mat-mdc-tab-body {
             .mat-mdc-tab-body-content {
+                overflow: hidden;
                 .mat-mdc-table {
                     background-color: transparent;
 

@@ -91,6 +91,9 @@ export class BuyPage implements OnInit {
     if (!this.userService.currentUser.verified) {
       this.standardCard.message = "notVerifiedUser";
     }
+    else if (this.userService.currentUser.admin) {
+      this.standardCard.message = "adminUser";
+    }
     this.subscribeEvents();
   }
 

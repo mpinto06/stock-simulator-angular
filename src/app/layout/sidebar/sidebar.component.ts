@@ -72,4 +72,8 @@ export class SidebarComponent implements OnInit {
     return this.userService.currentUser.verified;
   }
 
+  get userAdmin(): boolean {
+    return this.userService.currentUser.admin;
+  }
+
 }

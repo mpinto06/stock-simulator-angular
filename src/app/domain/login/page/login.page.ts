@@ -70,6 +70,7 @@ export class LoginPage implements OnInit {
             username: response.username,
             email: response.email,
             verified: response.verified,
+            admin: response.admin,
           }
           this.userService.loginUser(user);
         }

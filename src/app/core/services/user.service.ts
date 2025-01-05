@@ -48,7 +48,7 @@ export class UserService {
   }
 
   editUserRequest(request: UserEditRequestInterface): Promise<any> {
-    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.verifyUser}`;
+    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.editUser}`;
     const headers = this.headers;
     return firstValueFrom(this.http.post(url, request, {headers} ));
   }

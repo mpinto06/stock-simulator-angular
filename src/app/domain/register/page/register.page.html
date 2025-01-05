@@ -41,6 +41,9 @@
                     @else if (form.get('email')?.hasError('emailTaken')) {
                         <mat-error>El correo electrónico ingresado ya existe</mat-error>
                     }
+                    @else if (form.get('email')?.hasError('email')) {
+                        <mat-error>Ingrese un correo electrónico válido</mat-error>
+                    }
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Contraseña</mat-label>

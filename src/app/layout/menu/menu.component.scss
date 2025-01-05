@@ -37,6 +37,7 @@
 
     .title-container {
       padding-left: 2px;
+      text-wrap: nowrap;
       .title {
         color: $stock-font-color;
       }

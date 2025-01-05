@@ -55,6 +55,9 @@ export class ConfirmPage implements OnInit {
     if (this.currentUser.verified) {
       this.standardCard.message = 'verifiedUser';
     }
+    else if (this.currentUser.admin) {
+      this.standardCard.message = "adminUser";
+    }
   }
 
   verifyUser(): void {
