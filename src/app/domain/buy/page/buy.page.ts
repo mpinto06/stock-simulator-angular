@@ -88,6 +88,9 @@ export class BuyPage implements OnInit {
     if (this.dataFlowService.selectedTicker != '') {
       this.formGroup.get('ticker')?.setValue(this.dataFlowService.selectedTicker);
     }
+    if (!this.userService.currentUser.verified) {
+      this.standardCard.message = "notVerifiedUser";
+    }
     this.subscribeEvents();
   }
 

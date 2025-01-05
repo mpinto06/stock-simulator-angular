@@ -1,0 +1,42 @@
+<div class="sidebar" [ngClass]="{'sidebar--active': openSidebar}">
+    @if (openSidebar) {
+        <div class="user-information">
+            <div class="title">
+                Datos de usuario
+            </div>
+            <div class="profile-icon">
+                {{ userInitials }}
+            </div>
+            <div class="user-field">
+                <div class="label">
+                    Nombre:
+                </div>
+                <div class="value">
+                    {{ userFullName }}
+                </div>
+            </div>
+            <div class="user-field">
+                <div class="label">
+                    Email:
+                </div>
+                <div class="value">
+                    {{ userEmail }}
+                </div>      
+            </div>
+            <div class="user-field">
+                <div class="label">
+                    Usuario
+                </div>
+                <div class="value">
+                    {{ userUsername }}
+                </div>      
+            </div>
+            <div class="button-container">
+                @if (!userVerified) {
+                    <button class="button-wrapper primary" (click)="verifyUser()">Verificar Usuario</button>
+                }
+                <button class="button-wrapper primary" (click)="editUser()">Editar Usuario</button>
+            </div>
+        </div>
+    }
+</div>

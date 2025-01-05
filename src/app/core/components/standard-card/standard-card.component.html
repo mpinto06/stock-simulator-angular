@@ -1,6 +1,7 @@
 <div class="standard-card">
     <div class="card-container">
         <div class="card">
+        @if (!standardCard.message) {
             <div class="title-container">
                 <div class="title" [innerHTML]="standardCard.title">
                 </div> 
@@ -10,6 +11,19 @@
             <div class="card-wrapper">
                 <ng-content select="[card-content]"></ng-content>   
             </div>
-        </div>
+        }
+        @else if (cardMessage){
+            <div class="error-container">   
+                <div class="title">
+                    {{ cardMessage.title }}
+                </div>
+                <div class="error-description">
+                    {{ cardMessage.description }}
+                </div> 
+                <div class="button-container">
+                    <button class="button-wrapper primary" (click)="redirectSummary()">Regresar</button>
+                </div>
+            </div>
+        }
     </div>
 </div>

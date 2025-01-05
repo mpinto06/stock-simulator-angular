@@ -1,15 +1,7 @@
-<div id="register">
-    <div class="register-container">
-        <div class="register-card">
-            <div class="title-container">
-                <div class="title">
-                    Registrar usuario
-                </div>
-                <div class="description">
-                    Para acceder a <b>Stock Simulator</b> por primera vez
-                </div>
-            </div>     
-            <form [formGroup]="form" class="form-container">
+<div id="edit">
+    <stock-standard-card [standardCard]="standardCard">
+        <ng-container card-content>
+            <form [formGroup]="formGroup" class="form-container">
                 <div class="name-container">
                     <mat-form-field class="name-field">
                         <mat-label>Nombre</mat-label>
@@ -25,31 +17,31 @@
                 <mat-form-field>
                     <mat-label>Usuario</mat-label>
                     <input formControlName="username" matInput>
-                    @if (form.get('username')?.hasError('required')) {
+                    @if (formGroup.get('username')?.hasError('required')) {
                         <mat-error>Ingrese un usuario</mat-error>
                     }
-                    @else if (form.get('username')?.hasError('usernameTaken')) {
+                    @else if (formGroup.get('username')?.hasError('usernameTaken')) {
                         <mat-error>El usuario ya existe</mat-error>
                     }
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Email</mat-label>
                     <input formControlName="email" matInput>
-                    @if (form.get('email')?.hasError('required')) {
+                    @if (formGroup.get('email')?.hasError('required')) {
                         <mat-error>Ingrese un correo electrónico</mat-error>
                     }
-                    @else if (form.get('email')?.hasError('emailTaken')) {
+                    @else if (formGroup.get('email')?.hasError('emailTaken')) {
                         <mat-error>El correo electrónico ingresado ya existe</mat-error>
                     }
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Contraseña</mat-label>
                     <input  formControlName="password" type="password"  matInput>
-                    @if (form.get('password')?.hasError('required')) {
+                    @if (formGroup.get('password')?.hasError('required')) {
                         <mat-error>Ingrese una contraseña</mat-error>
                         
                     }
-                    @else if (form.get('password')?.hasError('passwordStrength')) {
+                    @else if (formGroup.get('password')?.hasError('passwordStrength')) {
                         <mat-error>
                             Necesitas una contraseña de 8 o más caracteres con letras y números.
                         </mat-error>
@@ -58,9 +50,8 @@
             </form>
 
             <div class="button-container">
-                <button class="button-wrapper primary" (click)="registerUser()" [disabled]="!validForm">Registrar</button>  
+                <button class="button-wrapper primary" (click)="editUser()" [disabled]="!formGroup.valid || !formChanged">Editar</button>  
             </div>
-        </div>
-       
-    </div>
+        </ng-container>
+    </stock-standard-card>
 </div>

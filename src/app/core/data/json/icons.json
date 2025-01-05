@@ -17,5 +17,10 @@
     "sell_active":"assets/icons/sell_active.svg",
     "sell_hover":"assets/icons/sell_hover.svg",
     "eye_active": "assets/icons/eye_active.svg",
-    "eye_hover": "assets/icons/eye_hover.svg"
+    "eye_hover": "assets/icons/eye_hover.svg",
+    "transfer_active": "assets/icons/transfer_active.svg",
+    "transfer_hover": "assets/icons/transfer_hover.svg",
+    "support_active": "assets/icons/support_active.svg",
+    "support_hover": "assets/icons/support_hover.svg",
+    "close": "assets/icons/close.svg"
 }

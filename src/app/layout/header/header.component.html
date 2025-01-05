@@ -15,7 +15,17 @@
             <img [src]="mainLogo" alt="Logo">
         </div>
         @if (userLogged) {
-            <stock-icon-button [button]="logoutIcon" (onClicked)="logout()"></stock-icon-button>
+            <div class="right-side-logged">
+                <stock-icon-button [button]="logoutIcon" (onClicked)="logout()"></stock-icon-button>
+                <div class="profile-icon" (click)="toggleSidebar()">
+                    @if (openSidebar) {
+                        <img width="50px" height="50px" [src]="closeIcon" alt="cerrar">
+                    }
+                    @else {
+                        {{ userInitials }}
+                    }
+                </div>
+            </div>
         }
         @else {
             <div class="right-side">

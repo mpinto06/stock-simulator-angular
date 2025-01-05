@@ -1,5 +1,6 @@
 {
     "registerUser": "/user/register",
+    "editUser": "/user/edit",
     "loginUser": "/user/login",
     "allStocks": "/stock/all",
     "stockEOD": "/stock/{ticker}/month",
@@ -7,5 +8,6 @@
     "buyStock": "/transaction/buy",
     "ownStock": "/stock/ownedstocks/{user}",
     "transactions": "/transaction/buy-sell",
-    "sellStock": "/transaction/sell"
+    "sellStock": "/transaction/sell",
+    "verifyUser": "/user/confirm"
 }

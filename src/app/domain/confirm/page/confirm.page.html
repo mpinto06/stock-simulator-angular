@@ -1,0 +1,24 @@
+<div id="confirm">
+    <stock-standard-card [standardCard]="standardCard">
+        <ng-container card-content>
+            <form [formGroup]="formGroup" class="form-container">
+                <mat-form-field>
+                    <mat-label>Código</mat-label>
+                    <input matInput formControlName="code" placeholder="1234ABCD" stockCapitalCase maxlength="8">
+                    @if (formGroup.get('code')?.hasError('required')) {
+                        <mat-error>Ingrese el código</mat-error>
+                    }
+                    @else if (formGroup.get('code')?.hasError('minlength')) {
+                        <mat-error>El código debe contener 8 caracteres</mat-error>
+                    }
+                    @else if (formGroup.get('code')?.hasError('invalid')) {
+                        <mat-error>El código ingresado es incorrecto</mat-error>
+                    }
+                </mat-form-field>
+                <div class="button-container">
+                    <button class="button-wrapper primary" [disabled]="!formGroup.valid" (click)="verifyUser()">Confirmar</button>
+                </div>
+            </form>
+        </ng-container>
+    </stock-standard-card>
+</div>

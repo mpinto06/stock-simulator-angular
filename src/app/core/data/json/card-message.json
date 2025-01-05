@@ -1,0 +1,14 @@
+{
+    "notVerifiedUser": {
+        "title": "Usuario no verificado",
+        "description": "El usuario no ha sido verificado, por favor revise su correo electrónico y siga las instrucciones para verificar su cuenta."
+    },
+    "verifiedUser": {
+        "title": "Usuario verificado",
+        "description": "El usuario ha sido verificado exitosamente. Ahora podrá realizar operaciones en la plataforma."
+    },
+    "editSuccess": {
+        "title": "Edición exitosa",
+        "description": "Los datos del usuario han sido actualizados exitosamente."
+    }
+}

@@ -38,6 +38,7 @@ export class RegisterPage implements OnInit {
       firstName : ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.validatorService.passwordValidator()]]
     })
   }
@@ -62,6 +63,7 @@ export class RegisterPage implements OnInit {
         firstName: this.form.get('firstName')?.value,
         lastName: this.form.get('lastName')?.value,
         username: this.form.get('username')?.value,
+        email: this.form.get('email')?.value,
         password: this.form.get('password')?.value,
         
       }
@@ -78,6 +80,9 @@ export class RegisterPage implements OnInit {
         }
         else if (response.code == 1) {
           this.form.get('username')?.setErrors({'usernameTaken': true});
+        }
+        else if (response.code == 2) {
+          this.form.get('email')?.setErrors({'emailTaken': true});
         }
       })
       .finally( () => {

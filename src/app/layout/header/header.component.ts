@@ -22,9 +22,11 @@ import { Router } from '@angular/router';
 export class HeaderComponent  implements OnInit{ 
 
   openMenu: boolean;
+  openSidebar: boolean
   mainLogo: string;
   userLogged: boolean;
   logoutIcon: IconButtonInterface;
+  closeIcon: string;
 
   constructor(
     private menuService: MenuService,
@@ -34,11 +36,12 @@ export class HeaderComponent  implements OnInit{
     private userService: UserService,
     private router: Router
   ) {
-    this.openMenu = this.menuService.openMenu;
+    this.openMenu = this.menuService.isMenuOpen;
+    this.openSidebar = this.menuService.isSidebarOpen;
     this.mainLogo = this.appUtilsService.icons.logo;
     this.userLogged = this.notificationService.userLogged;
     this.logoutIcon = this.appUtilsService.iconButtons.logoutIcon;
-    console.log(this.logoutIcon)
+    this.closeIcon = this.appUtilsService.icons.close;
   }
   ngOnInit(): void {
     this.subscribeEvents();   
@@ -51,6 +54,12 @@ export class HeaderComponent  implements OnInit{
       this.openMenu = open;
     })
 
+    this.menuService.openSidebarObservable$
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe(( open: boolean ) => {
+      this.openSidebar = open;
+    })
+
     this.notificationService.userLoggedObservable$
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(( logged: boolean) => {
@@ -59,11 +68,11 @@ export class HeaderComponent  implements OnInit{
   }
 
   toggle(): void {
-    console.log('aaa?')
     this.menuService.toggle()
   }
 
   logout(): void {
+    this.menuService.closeSidebar();
     this.userService.logoutUser();
   }
 
@@ -80,5 +89,14 @@ export class HeaderComponent  implements OnInit{
         }
       });
     }  
+  }
+
+  toggleSidebar(): void {
+    console.log('toggle sidebar');
+    this.menuService.toggleSidebar();
+  }
+
+  get userInitials(): string {
+    return this.userService.currentUser.firstName.charAt(0) + this.userService.currentUser.lastName.charAt(0);
   }
 }

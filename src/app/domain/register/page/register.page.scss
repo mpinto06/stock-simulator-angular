@@ -4,6 +4,7 @@
 #register {
   width: 100%;
   position: relative;
+  height: calc(120vh - $header-height);
 
   .register-container {
     position: absolute;

@@ -1,0 +1,25 @@
+
+#edit {
+  .form-container {
+    margin-top: 15px;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+
+    .name-container {
+      display: flex;
+      justify-content: space-between;
+
+
+      .name-field {
+        min-width: 250px;
+      }
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 
+  }
+}

@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private appUtilService: AppUtilService
   ) {
-    this.openMenu = menuService.openMenu;
+    this.openMenu = menuService.isMenuOpen;
     this.icons = this.appUtilService.icons;
   }
   

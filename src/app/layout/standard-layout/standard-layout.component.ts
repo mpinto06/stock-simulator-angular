@@ -10,6 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserService } from '../../core/services/user.service';
 import { NotificationService } from '../../core/services/notification.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'stock-standard-layout',
@@ -20,14 +21,15 @@ import { NotificationService } from '../../core/services/notification.service';
     RouterOutlet,
     HeaderComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
 ],
   templateUrl: './standard-layout.component.html',
   styleUrl: './standard-layout.component.scss',
 })
 export class StandardLayoutComponent implements OnInit{ 
   openMenu: boolean = true;
-  loggedPaths = ['/summary', '/buy', '/sell']
+  loggedPaths = ['/summary', '/buy', '/sell', '/transfer' , '/confirm', '/edit'];
 
   constructor(
     private loadingService: LoadingService,
@@ -39,7 +41,7 @@ export class StandardLayoutComponent implements OnInit{
   ) { 
   }
   ngOnInit(): void {
-    this.openMenu = this.menuService.openMenu;
+    this.openMenu = this.menuService.isMenuOpen;
     this.subscribeEvents();
     if (this.userService.currentUser != null && this.loggedPaths.includes(this.router.url)) {
       this.notificationService.login();

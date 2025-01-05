@@ -81,6 +81,9 @@ export class SellPage implements OnInit {
   ngOnInit(): void {
     this.subscribeEvents();
     this.setData();
+    if (!this.userService.currentUser.verified) {
+      this.standardCard.message = "notVerifiedUser";
+    }
    }
 
   redirectToSummary() {

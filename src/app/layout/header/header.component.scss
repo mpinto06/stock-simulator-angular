@@ -53,6 +53,29 @@
       }
     }
   }
+
+  .right-side-logged {
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    .profile-icon {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      border: 2px solid $stock-strips;
+      background-color: $stock-primary;
+      width: 50px;
+      height: 50px;
+      color: $stock-dark-font-color;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  } 
   
 
   .menu-toggle-container {

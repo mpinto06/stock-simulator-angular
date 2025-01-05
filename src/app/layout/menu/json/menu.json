@@ -2,7 +2,7 @@
     "itemsLogged":  [
         {   
             "icon": "summary",
-            "text": "Resumen financiero",
+            "text": "Consulta de Acciones",
             "path": "/summary",
             "over": false      
         },
@@ -16,6 +16,18 @@
             "icon": "sell",
             "text": "Venta de Acciones",
             "path": "/sell",
+            "over": false
+        } ,
+        {
+            "icon": "transfer",
+            "text": "Transferencia de Acciones",
+            "path": "/transfer",
+            "over": false
+        },
+        {
+            "icon": "support",
+            "text": "Contacto y Soporte",
+            "path": "/support",
             "over": false
         }  
     ],

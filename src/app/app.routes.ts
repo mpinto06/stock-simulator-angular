@@ -40,6 +40,16 @@ export const routes: Routes = [
                 path: 'sell',
                 loadComponent: () => import('./domain/sell/page/sell.page')
                   .then(m => m.SellPage)
+            },
+            {
+                path: 'edit',
+                loadComponent: () => import('./domain/edit/page/edit.page')
+                    .then(m => m.EditPage)
+            },
+            {
+                path: 'confirm',
+                loadComponent: () => import('./domain/confirm/page/confirm.page')
+                    .then(m => m.ConfirmPage)
             }
             
         ]

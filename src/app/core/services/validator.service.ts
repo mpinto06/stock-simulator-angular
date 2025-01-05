@@ -23,6 +23,17 @@ export class ValidatorService {
       else return { passwordStrength: true };
     };
   }
+
+  editPasswordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+      const isValid = (this.alphaNumericRegex.test(value) && value.length >= 8) || value === '';
+      if (isValid) {
+        return null;
+      }
+      else return { passwordStrength: true };
+    };
+  }
   
   greaterThanZeroValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
