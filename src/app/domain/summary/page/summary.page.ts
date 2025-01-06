@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ViewChild, type OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, ViewChild, type OnInit } from '@angular/core';
 import { FormControl, } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +19,7 @@ import { DataFlowService } from '../../../core/services/data-flow.service';
 import { OwnStockResponseInterface } from '../../../core/data/interface/response/own-stock-response.interface';
 import { TransactionResponseInterface } from '../../../core/data/interface/response/transaction-response.interface';
 import { UserService } from '../../../core/services/user.service';
+import { AdminPanelComponent } from '../components/admin-panel/admin-panel.component';
 
 
 @Component({
@@ -32,20 +33,21 @@ import { UserService } from '../../../core/services/user.service';
     MatInputModule,
     MatPaginatorModule,
     IconButtonComponent,
-    StockDetailComponent
+    StockDetailComponent,
+    AdminPanelComponent
 ],
   templateUrl: './summary.page.html',
   styleUrl: './summary.page.scss',
 })
-export class SummaryPage  implements AfterViewInit, OnInit {
+export class SummaryPage  implements OnInit, AfterViewInit{
   
-  displayedColumns: string[] = ['ticker', 'name', 'description', 'detail'];
-  displayedColumns2: string[] = ['ticker', 'name', 'quantity', 'detail'];
-  displayedColumns3: string[] = ['ticker', 'amount', 'quantity', 'type', 'date'];
+  availableStocksColumns: string[] = ['ticker', 'name', 'description', 'detail'];
+  adquiredStocksColumns: string[] = ['ticker', 'name', 'quantity', 'detail'];
+  transactionColumns: string[] = ['ticker', 'amount', 'quantity', 'type', 'date'];
+  
   availableStocksDataSource = new MatTableDataSource<StockResponseInterface>([]);
   adquiredStocksDataSource = new MatTableDataSource<OwnStockResponseInterface>([]);
-  transactionsDataSource = new MatTableDataSource<TransactionResponseInterface>([]);
-  myControl = new FormControl('initial value');
+  transactionDataSource = new MatTableDataSource<TransactionResponseInterface>([]);
   selectedTicker: string = '';
   
   buyIcon: IconButtonInterface;
@@ -55,7 +57,9 @@ export class SummaryPage  implements AfterViewInit, OnInit {
 
   viewDetail: boolean = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('availablePaginator', {static: false}) availablePaginator!: MatPaginator;
+  @ViewChild('adquiredPaginator', {static: false}) adquiredPaginator!: MatPaginator;
+  @ViewChild('transactionPaginator', {static: false}) transactionPaginator!: MatPaginator;
 
   constructor(
     private stockService: StockService,
@@ -75,8 +79,11 @@ export class SummaryPage  implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.availableStocksDataSource.paginator = this.paginator;
+    this.availableStocksDataSource.paginator = this.availablePaginator;
+    this.adquiredStocksDataSource.paginator = this.adquiredPaginator;
+    this.transactionDataSource.paginator = this.transactionPaginator;
   }
+
 
   getAllDataSources(): void {
     this.loadingService.show();
@@ -88,14 +95,15 @@ export class SummaryPage  implements AfterViewInit, OnInit {
       }
       this.loadingService.hide();
     })
-    this.stockService.getOwnStocksRequest()
+    this.stockService.getOwnStocksRequest(this.userService.currentUser.username)
     .then( (response) => {
       this.adquiredStocksDataSource.data = response;
+      // this.adquiredStocksDataSource.;
     })
 
-    this.stockService.getBuySellRequest()
+    this.stockService.getTransactionsRequest(this.userService.currentUser.username)
     .then( (response) => {
-      this.transactionsDataSource.data = response;
+      this.transactionDataSource.data = response;
     })
   }
 
@@ -103,7 +111,7 @@ export class SummaryPage  implements AfterViewInit, OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.availableStocksDataSource.filter = filterValue.trim().toLowerCase();
     this.adquiredStocksDataSource.filter = filterValue.trim().toLowerCase();
-    this.transactionsDataSource.filter = filterValue.trim().toLowerCase();
+    this.transactionDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   viewStockDetail(stockResponse: StockResponseInterface) {
@@ -191,6 +199,10 @@ export class SummaryPage  implements AfterViewInit, OnInit {
       default:
         return '';
     }
+  }
+
+  get userAdmin(): boolean {
+    return this.userService.currentUser.admin;
   }
   
 }

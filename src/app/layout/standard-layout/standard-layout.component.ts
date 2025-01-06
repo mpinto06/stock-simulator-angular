@@ -43,6 +43,7 @@ export class StandardLayoutComponent implements OnInit{
   }
   ngOnInit(): void {
     this.openMenu = this.menuService.isMenuOpen;
+    console.log('siempre');
     this.subscribeEvents();
     if (this.userService.currentUser != null && this.loggedPaths.includes(this.router.url)) {
       this.notificationService.login();

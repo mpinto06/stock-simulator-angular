@@ -1,10 +1,24 @@
 ::ng-deep {
+    :root {
+        --mdc-outlined-text-field-focus-outline-color: transparent;
+    }
     mat-paginator {
         &.mat-mdc-paginator {
             background-color: #3a3b47;
             color: $stock-font-color;
             border-bottom-right-radius: 8px;
             border-bottom-left-radius: 8px;
+
+            .mat-mdc-paginator-icon {
+                fill: $stock-primary;
+            }
+
+            // .mat-mdc-button-disabled {
+            //     .mat-mdc-paginator-icon {
+            //         fill: red;
+
+            //     }
+            // }
         }
 
         .mat-list-item {

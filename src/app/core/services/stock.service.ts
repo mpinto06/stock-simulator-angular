@@ -39,15 +39,13 @@ export class StockService {
     return firstValueFrom(this.http.get(url, {headers} ));
   }
 
-  getOwnStocksRequest(): Promise<any> {
-    let username: string = this.userService.currentUser.username;
+  getOwnStocksRequest(username: string): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.ownStock.replace('{user}', username)}`;
     const headers = this.headers;
     return firstValueFrom(this.http.get(url, {headers} ));
   }
 
-  getBuySellRequest(): Promise<any> {
-    let username: string = this.userService.currentUser.username;
+  getTransactionsRequest(username: string): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.transactions}?username=${username}`;
     const headers = this.headers;
     return firstValueFrom(this.http.get(url, {headers} ));

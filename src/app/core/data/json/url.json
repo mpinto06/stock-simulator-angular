@@ -1,5 +1,6 @@
 {
     "registerUser": "/user/register",
+    "allUser": "/user/all",
     "editUser": "/user/edit",
     "loginUser": "/user/login",
     "allStocks": "/stock/all",
@@ -7,7 +8,8 @@
     "verifyVisa": "/transaction/verify-visa",
     "buyStock": "/transaction/buy",
     "ownStock": "/stock/ownedstocks/{user}",
-    "transactions": "/transaction/buy-sell",
+    "transactions": "/transaction/all",
     "sellStock": "/transaction/sell",
-    "verifyUser": "/user/confirm"
+    "verifyUser": "/user/confirm",
+    "deleteUser": "/user/delete"
 }

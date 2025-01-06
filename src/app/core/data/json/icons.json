@@ -22,5 +22,7 @@
     "transfer_hover": "assets/icons/transfer_hover.svg",
     "support_active": "assets/icons/support_active.svg",
     "support_hover": "assets/icons/support_hover.svg",
+    "edit_active":  "assets/icons/edit_active.svg",
+    "edit_hover":  "assets/icons/edit_hover.svg",
     "close": "assets/icons/close.svg"
 }

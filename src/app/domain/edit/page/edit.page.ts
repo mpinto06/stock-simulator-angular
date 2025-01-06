@@ -11,6 +11,13 @@ import { UserService } from '../../../core/services/user.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ValidatorService } from '../../../core/services/validator.service';
 import { UserEditRequestInterface } from '../../../core/data/interface/request/user-register-request.interface';
+import { DataFlowService } from '../../../core/services/data-flow.service';
+import { Router } from '@angular/router';
+import { ConfirmDeleteModalComponent } from '../../../core/components/confirm-delete-modal/confirm-delete-modal.component';
+import { ConfirmDeleteModalInterface } from '../../../core/data/interface/confirm-delete-modal.interface';
+import { NotificationService } from '../../../core/services/notification.service';
+import { OwnStockResponseInterface } from '../../../core/data/interface/response/own-stock-response.interface';
+import { StockService } from '../../../core/services/stock.service';
 
 @Component({
   selector: 'stock-edit',
@@ -21,7 +28,8 @@ import { UserEditRequestInterface } from '../../../core/data/interface/request/u
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ConfirmDeleteModalComponent
   ],
   templateUrl: './edit.page.html',
   styleUrl: './edit.page.scss',
@@ -30,8 +38,10 @@ export class EditPage implements OnInit {
 
   standardCard: StandardCardInterface;
   formGroup: FormGroup;
-  currentUser: UserResponseInterface;
+  editUser: UserResponseInterface;
   formChanged: boolean = false;
+  modalData: ConfirmDeleteModalInterface;
+  ownedStocks: OwnStockResponseInterface[] = [];
 
   constructor(
       private formBuilder: FormBuilder,
@@ -39,28 +49,53 @@ export class EditPage implements OnInit {
       private userService: UserService,
       private loadingService: LoadingService,
       private validatorService: ValidatorService,
+      private dataFlowService: DataFlowService,
+      private router: Router,
+      private notificationService: NotificationService,
+      private stockService: StockService,
     ) {
-      this.currentUser = this.userService.currentUser;
+      let modalDescription: string;
+      if (this.userService.currentUser.admin && this.dataFlowService.selectedUser) {
+        this.editUser = this.dataFlowService.selectedUser;
+        modalDescription = `Al pulsar 'Eliminar', se borarrá permamente el usuario ${this.editUser.username} de Stock Simulator. `;
+      }
+      else{
+        this.editUser = this.userService.currentUser;
+        modalDescription = `Al pulsar 'Eliminar', se borarrá permamente el usuario ${this.editUser.username} de Stock Simulator y se cerrará la sesión. `;
+        if (this.editUser.admin) {
+          this.router.navigate(['/summary']).catch();
+        }
+      }
+     
       this.standardCard = {
         title: 'Editar Usuario',
         description: `Edite los campos que desea cambiar.`,	
       }
+
+      this.modalData = {
+        title: "¿Estás seguro?",
+        deleteText: "Confirmar",
+        description: modalDescription
+      }
   
       this.formGroup =  this.formBuilder.group({  
-        firstName: [this.currentUser.firstName, Validators.required],
-        lastName: [this.currentUser.lastName, Validators.required],
-        username: [this.currentUser.username, Validators.required],
-        email: [this.currentUser.email, [Validators.required, Validators.email]],
+        firstName: [this.editUser.firstName, Validators.required],
+        lastName: [this.editUser.lastName, Validators.required],
+        username: [this.editUser.username, Validators.required],
+        email: [this.editUser.email, [Validators.required, Validators.email]],
         password: ['', this.validatorService.editPasswordValidator()],
       });
+
+
     }
 
 
   ngOnInit(): void { 
     this.subscribeEvents();
-    if (this.currentUser.admin) {
+    if (this.editUser.admin) {
       this.standardCard.message = "adminUser";
     }
+    this.getData();
   }
 
 
@@ -68,10 +103,10 @@ export class EditPage implements OnInit {
     this.formGroup.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(( ) => {
-        if (this.firstNameControl?.value !== this.currentUser.firstName ||
-          this.lastNameControl?.value !== this.currentUser.lastName ||
-          this.usernameControl?.value !== this.currentUser.username ||
-          this.emailControl?.value !== this.currentUser.email ||
+        if (this.firstNameControl?.value !== this.editUser.firstName ||
+          this.lastNameControl?.value !== this.editUser.lastName ||
+          this.usernameControl?.value !== this.editUser.username ||
+          this.emailControl?.value !== this.editUser.email ||
           this.passwordControl?.value !== '') {
             this.formChanged = true;
         }
@@ -81,23 +116,25 @@ export class EditPage implements OnInit {
       });
   }
 
-  editUser(): void {
+  editUserProfile(): void {
     const userRequest: UserEditRequestInterface = {
       firstName: this.firstNameControl?.value,
       lastName: this.lastNameControl?.value,
-      username: this.usernameControl?.value != this.currentUser.username ? this.usernameControl?.value : null,
-      oldUsername: this.currentUser.username,
-      email: this.emailControl?.value != this.currentUser.email ? this.emailControl?.value : null,
+      username: this.usernameControl?.value != this.editUser.username ? this.usernameControl?.value : null,
+      oldUsername: this.editUser.username,
+      email: this.emailControl?.value != this.editUser.email ? this.emailControl?.value : null,
       password: this.passwordControl?.value != '' ? this.passwordControl?.value : null,
     }
     this.loadingService.show();
     this.userService.editUserRequest(userRequest).then((response) => {
       if (response.code == 0) {
-        this.currentUser.firstName = userRequest.firstName;
-        this.currentUser.lastName = userRequest.lastName;
-        this.currentUser.username = userRequest.username != null ? userRequest.username : this.currentUser.username;
-        this.currentUser.email = userRequest.email != null ? userRequest.email : this.currentUser.email;
-        this.userService.saveUserStorage(this.currentUser);
+        if (!this.userService.currentUser.admin) {
+          this.editUser.firstName = userRequest.firstName;
+          this.editUser.lastName = userRequest.lastName;
+          this.editUser.username = userRequest.username != null ? userRequest.username : this.editUser.username;
+          this.editUser.email = userRequest.email != null ? userRequest.email : this.editUser.email;
+          this.userService.saveUserStorage(this.editUser);
+        }
         this.standardCard.message = 'editSuccess';
       }
       else if (response.code == 1) {
@@ -112,6 +149,38 @@ export class EditPage implements OnInit {
         this.loadingService.hide();
       }
     )
+  }
+
+  getData(): void{
+    this.loadingService.show();
+    this.stockService.getOwnStocksRequest(this.editUser.username)
+    .then(( response) => {
+      this.ownedStocks = response;
+      this.loadingService.hide();
+    })
+  }
+
+  removeUserModal(): void {
+    this.notificationService.openDeleteModal()
+  }
+
+  removeUserService(): void {
+    this.loadingService.show();
+    this.userService.deleteUserRequest(this.editUser.username)
+    .then( ( response) => {
+      if (response?.code == 0) {
+        if (this.userService.currentUser.admin) {
+          this.dataFlowService.cleanData()
+          this.standardCard.message = "deletedUser";
+        }
+        else {
+          this.userService.logoutUser();
+        }
+      }
+    })
+    .finally(() => {
+      this.loadingService.hide();
+    })
   }
 
   get passwordControl() {

@@ -53,8 +53,15 @@
             </form>
 
             <div class="button-container">
-                <button class="button-wrapper primary" (click)="editUser()" [disabled]="!formGroup.valid || !formChanged">Editar</button>  
+                @if (ownedStocks.length != 0) {
+                    <div class="delete-note">
+                        <b>Nota:</b> Para poder eliminar el usuario, debe vender todas las acciones adquiridas.
+                    </div>
+                }
+                <button class="button-wrapper delete" [disabled]="ownedStocks.length != 0" (click)="removeUserModal()">Eliminar</button>
+                <button class="button-wrapper primary" (click)="editUserProfile()" [disabled]="!formGroup.valid || !formChanged">Editar</button>  
             </div>
         </ng-container>
     </stock-standard-card>
+    <stock-confirm-delete-modal [modalData]="modalData" (confirm)="removeUserService()"></stock-confirm-delete-modal>
 </div>

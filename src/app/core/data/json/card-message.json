@@ -14,5 +14,9 @@
     "adminUser": {
         "title": "Usuario administrador",
         "description": "Esta operación solo puede ser realizada por un usuario dentro de la plataforma. "
+    },
+    "deletedUser": {
+        "title": "Usuario eliminado",
+        "description": "El usuario ha sido eliminado exitosamente. "
     }
 }

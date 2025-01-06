@@ -44,4 +44,22 @@
         pointer-events: none;
         cursor: none;
     }
+
+    &.delete:enabled {
+        background-color: #e57373;
+        border: 3px solid #cc575d;
+        color: $stock-dark-font-color
+    }
+
+    &.delete:hover:enabled {
+        background-color: #ea6a6a;
+        border: 3px solid #cc575d;
+        color: $stock-dark-font-color
+    }
+
+    &.delete:active:enabled {
+        background-color: #e53737;
+        border: 3px solid #723033;
+        color: $stock-dark-font-color
+    }
 }

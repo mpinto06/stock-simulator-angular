@@ -123,7 +123,7 @@ export class SellPage implements OnInit {
 
   setData():void {
     this.loadingService.show();
-    this.stockService.getOwnStocksRequest()
+    this.stockService.getOwnStocksRequest(this.userService.currentUser.username)
     .then( (response) => {
       this.loadingService.hide();
       this.ownedStocks = response;

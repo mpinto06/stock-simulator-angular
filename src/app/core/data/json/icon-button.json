@@ -15,5 +15,9 @@
     "sellIcon": {
         "alt": "vender acción",
         "iconName": "sell"
-    }   
+    },
+    "editIcon": {
+        "alt": "editar",
+        "iconName": "edit"
+    }    
 }

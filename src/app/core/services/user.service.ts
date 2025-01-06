@@ -41,6 +41,18 @@ export class UserService {
     return firstValueFrom(this.http.post(url, request, {headers} ));
   }
 
+  getAllUsersRequest(): Promise<UserResponseInterface[]> {
+    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.allUser}`;
+    const headers = this.headers;
+    return firstValueFrom(this.http.get<UserResponseInterface[]>(url, { headers }));
+  }
+
+  deleteUserRequest(username: string): Promise<any> {
+    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.deleteUser}?username=${username}`;
+    const headers = this.headers;
+    return firstValueFrom(this.http.post(url, { headers }));
+  }
+
   verifyUserRequest(request: UserVerifyRequestInterface): Promise<any> {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.verifyUser}`;
     const headers = this.headers;
