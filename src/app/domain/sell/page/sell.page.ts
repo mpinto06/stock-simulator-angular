@@ -80,12 +80,14 @@ export class SellPage implements OnInit {
   }
   ngOnInit(): void {
     this.subscribeEvents();
-    this.setData();
     if (!this.userService.currentUser.verified) {
       this.standardCard.message = "notVerifiedUser";
     }
     else if (this.userService.currentUser.admin) {
       this.standardCard.message = "adminUser";
+    }
+    else {
+      this.setData();
     }
    }
 
@@ -130,6 +132,9 @@ export class SellPage implements OnInit {
       this.ownedStocks.forEach( ( stock: OwnStockResponseInterface) => {
         this.tickerList.push(stock.ticker)
       })
+      if (this.ownedStocks.length == 0) {
+        this.standardCard.message = "withoutStock";
+      }
       this.formGroup.get('ticker')?.setValidators([Validators.required, this.validatorService.containsStockValidator(this.tickerList)])
       if (this.dataFlowService.selectedTicker != '' ) {
         this.formGroup.get('ticker')?.setValue(this.dataFlowService.selectedTicker);

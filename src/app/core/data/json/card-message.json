@@ -15,6 +15,10 @@
         "title": "Usuario administrador",
         "description": "Esta operación solo puede ser realizada por un usuario dentro de la plataforma. "
     },
+    "withoutStock": {
+        "title": "Sin acciones adquiridas",
+        "description": "Ingrese a \"Compra de acciones\" para comenzar a invertir en la plataforma."
+    },
     "deletedUser": {
         "title": "Usuario eliminado",
         "description": "El usuario ha sido eliminado exitosamente. "

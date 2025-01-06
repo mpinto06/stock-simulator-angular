@@ -19,5 +19,9 @@
     "editIcon": {
         "alt": "editar",
         "iconName": "edit"
+    },
+    "transferIcon": {
+        "alt": "tranferir",
+        "iconName": "transfer"
     }    
 }

@@ -11,6 +11,7 @@ import { StockInterface } from '../data/interface/stock.interface';
 import { BuyStockRequest } from '../data/interface/request/buy-stock-request.interface';
 import { UserService } from './user.service';
 import { SellStockRequestInterface } from '../data/interface/request/sell-stock-request.interface';
+import { TransferStockRequestInterface } from '../data/interface/request/transfer-stock-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,12 @@ export class StockService {
     const url = `${this.appUtil.apiUrl}${this.appUtil.urls.sellStock}`
     const headers = this.headers;
     return firstValueFrom(this.http.post(url, sellRequest, {headers}))
+  }
+
+  transferStock(transferRequest: TransferStockRequestInterface): Promise<any> {
+    const url = `${this.appUtil.apiUrl}${this.appUtil.urls.transferStock}`;
+    const headers = this.headers;
+    return firstValueFrom(this.http.post(url, transferRequest, { headers }));
   }
 
   verifyVisaCard(cardNumber: string): Promise<any> {

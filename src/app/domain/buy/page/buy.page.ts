@@ -101,11 +101,6 @@ export class BuyPage implements OnInit {
     this.formGroup.statusChanges
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(() => {
-      console.log(this.formGroup.get('cvc')?.status);
-      console.log(this.formGroup.get('ticker')?.status);
-      console.log(this.formGroup.get('amount')?.status);
-      console.log(this.formGroup.get('cardNumber')?.status);
-      console.log(this.formGroup.get('expirationDate')?.status);
       this.formValid = this.formGroup.valid;
     })
   }

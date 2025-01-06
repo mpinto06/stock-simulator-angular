@@ -1,10 +1,10 @@
-<div id="buy-page">
+<div id="transfer-page">
   <stock-standard-card [standardCard]="standardCard">
     <ng-container card-content>
-      <mat-stepper [linear]="isLinear" #stepper>
+      <mat-stepper [linear]="false" #stepper>
         <mat-step [stepControl]="formGroup" [completed]="false">
           <form [formGroup]="formGroup" class="form-container">
-            <ng-template matStepLabel>Llena datos de tu compra</ng-template>
+            <ng-template matStepLabel>Llena datos de la transferencia</ng-template>
             <div class="stock-info-container">
               <mat-form-field>
                 <mat-label>Ticker</mat-label>
@@ -26,70 +26,32 @@
                   formControlName="amount"
                 />
                 @if (formGroup.get('amount')?.hasError('required')) {
-                <mat-error>Ingrese la cantidad a comprar</mat-error>
+                <mat-error>Ingrese la cantidad a transferir</mat-error>
                 } @else if
                 (formGroup.get('amount')?.hasError('greaterThanZero')) {
                 <mat-error>La cantidad debe ser mayor a 0</mat-error>
+                }
+                @else if (formGroup.get('amount')?.hasError('notEnoughStocks')) {
+                  <mat-error>No posee suficientes acciones</mat-error>
                 }
               </mat-form-field>
             </div>
             <div class="payment-info-container">
               <mat-form-field>
-                <mat-label
-                  >Tarjeta de crédito
-                  <img src="assets/visa_logo.png" width="30px" height="auto" />
-                </mat-label>
+                <mat-label>Usuario Receptor</mat-label>
                 <input
                   matInput
-                  formControlName="cardNumber"
-                  type="tel"
-                  stockOnlyNumber
-                  maxlength="19"
-                  placeholder="xxxx xxxx xxxx xxxx"
+                  formControlName="receptor"
                 />
-                @if (formGroup.get('cardNumber')?.hasError('required')) {
-                <mat-error
-                  >Ingrese el número de su Tarjeta de Crédito</mat-error
-                >
+                @if (formGroup.get('receptor')?.hasError('required')) {
+                  <mat-error>Ingrese el usuario receptor</mat-error>
                 } @else if
-                (formGroup.get('cardNumber')?.hasError('invalidCredidCard')) {
-                <mat-error>Tarjeta VISA inválida</mat-error>
+                (formGroup.get('receptor')?.hasError('userNotAvailable')) {
+                <mat-error>El usuario ingresado no existe</mat-error>
                 }
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Fecha de Expiración </mat-label>
-                <input
-                  matInput
-                  formControlName="expirationDate"
-                  maxlength="19"
-                  stockCreditCardDate
-                  placeholder="MM/YY"
-                />
-                @if (formGroup.get('expirationDate')?.hasError('required')) {
-                <mat-error
-                  >Ingrese la fecha de expiración de su Tarjeta de
-                  Crédito</mat-error
-                >
-                } @else if
-                (formGroup.get('expirationDate')?.hasError('invalidDateFormat'))
-                {
-                <mat-error>Ingrese la fecha en el format MM/YY</mat-error>
-                }
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>CVC</mat-label>
-                <input
-                  matInput
-                  formControlName="cvc"
-                  type="password"
-                  stockCVCDigits
-                  maxlength="3"
-                  placeholder="123"
-                />
-                @if (formGroup.get('cvc')?.hasError('required')) {
-                <mat-error>Ingrese el código cvc</mat-error>
-                } @else if (formGroup.get('cvc')?.hasError('invalidCVC')) {
-                <mat-error>El CVC debe contener 3 dígitos</mat-error>
+                @else if
+                (formGroup.get('receptor')?.hasError('currentUser')) {
+                <mat-error>No puede realizar transferencias a sí mismo</mat-error>
                 }
               </mat-form-field>
             </div>
@@ -101,9 +63,9 @@
                 Cancelar
               </button>
               <button
-                [disabled]="!formValid"
+                [disabled]="!formGroup.valid"
                 class="button-wrapper primary"
-                (click)="verifyVisaCard(stepper)"
+                (click)="getStockDetails(stepper)"
               >
                 Continuar
               </button>
@@ -111,7 +73,7 @@
           </form>
         </mat-step>
         <mat-step [editable]="false">
-          <ng-template matStepLabel>Verifica su compra</ng-template>
+          <ng-template matStepLabel>Verifica los datos</ng-template>
           <div class="verification-container">
             <div class="verification-row">
               <div class="col">
@@ -154,7 +116,14 @@
                   <b>USD</b>
                 </div>
               </div>
+              <div class="col">
+                <div class="label">Receptor</div>
+                <div class="value">
+                  {{ formGroup.get('receptor')?.value }}
+                </div>
+              </div>
             </div>
+            
           </div>
           <div class="button-container">
             <button matStepperPrevious class="button-wrapper secondary">
@@ -162,14 +131,14 @@
             </button>
             <button
               class="button-wrapper primary"
-              (click)="buyStock(stepper)"
+              (click)="transferStock(stepper)"
             >
-              Comprar
+              Transferir
             </button>
           </div>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Compra realizada con éxito</ng-template>
+          <ng-template matStepLabel>Transferencia realizada con éxito</ng-template>
           <div class="success-message">¡Su operación ha sido exitosa!</div>
           <div class="button-container">
             <button

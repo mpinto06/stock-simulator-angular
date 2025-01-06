@@ -51,6 +51,18 @@ export class ValidatorService {
    };
   }
 
+  containsUserValidator(users: string[], currentUsername: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value as string;
+      if (value == currentUsername) {
+        return { currentUser: true };
+      }
+      else if (users.includes(value)) {
+        return null;
+      }
+      return { userNotAvailable : true };
+   };
+  }
 
   creditCardDateFormatValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

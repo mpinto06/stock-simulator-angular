@@ -42,6 +42,16 @@ export const routes: Routes = [
                   .then(m => m.SellPage)
             },
             {
+                path: 'transfer',
+                loadComponent: () => import('./domain/transfer/page/transfer.page')
+                  .then(m => m.TransferPage)
+            },
+            {
+                path: 'support',
+                loadComponent: () => import('./domain/support/page/support.page')
+                  .then(m => m.SupportPage)
+            },
+            {
                 path: 'edit',
                 loadComponent: () => import('./domain/edit/page/edit.page')
                     .then(m => m.EditPage)

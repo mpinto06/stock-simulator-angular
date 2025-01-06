@@ -42,7 +42,7 @@ export class AdminPanelComponent implements OnInit {
 
   availableStocksColumns: string[] = ['ticker', 'name', 'description', 'detail'];
   userColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'verified', 'select'];
-  transactionColumns: string[] = ['ticker', 'amount', 'quantity', 'type', 'date'];
+  transactionColumns: string[] = ['ticker', 'amount', 'quantity', 'type', 'date', 'receptor', 'issuer'];
   ownedStocksColumns: string[] = ['ticker', 'name', 'quantity', 'detail'];
     
   availableStocksDataSource = new MatTableDataSource<StockResponseInterface>([]);
@@ -58,6 +58,7 @@ export class AdminPanelComponent implements OnInit {
   @ViewChild('availablePaginator') availablePaginator!: MatPaginator;
   @ViewChild('userPaginator') userPaginator!: MatPaginator;
   @ViewChild('transactionPaginator') transactionPaginator!: MatPaginator;
+  @ViewChild('ownedStockPaginator') ownedStockPaginator!: MatPaginator;
 
   editIcon: IconButtonInterface;
   eyeIcon: IconButtonInterface;
@@ -83,6 +84,7 @@ export class AdminPanelComponent implements OnInit {
     this.availableStocksDataSource.paginator = this.availablePaginator;
     this.userDataSource.paginator = this.userPaginator;
     this.transactionDataSource.paginator = this.transactionPaginator;
+    this.ownedStockDataSource.paginator = this.ownedStockPaginator;
   }
 
 
@@ -111,6 +113,7 @@ export class AdminPanelComponent implements OnInit {
       this.availableStocksDataSource.filter = filterValue.trim().toLowerCase();
       this.userDataSource.filter = filterValue.trim().toLowerCase();
       this.transactionDataSource.filter = filterValue.trim().toLowerCase();
+      this.ownedStockDataSource.filter = filterValue.trim().toLowerCase();
     }
   
     viewStockDetail(stockResponse: StockResponseInterface) {
@@ -153,6 +156,8 @@ export class AdminPanelComponent implements OnInit {
           return 'Compra';
         case 'sell':
           return 'Venta';
+        case 'transfer':
+          return 'Transferencia';
         default:
           return '';
       }

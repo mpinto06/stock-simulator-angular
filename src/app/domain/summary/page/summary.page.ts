@@ -43,7 +43,7 @@ export class SummaryPage  implements OnInit, AfterViewInit{
   
   availableStocksColumns: string[] = ['ticker', 'name', 'description', 'detail'];
   adquiredStocksColumns: string[] = ['ticker', 'name', 'quantity', 'detail'];
-  transactionColumns: string[] = ['ticker', 'amount', 'quantity', 'type', 'date'];
+  transactionColumns: string[] = ['ticker', 'amount', 'quantity', 'type', 'date', 'receptor', 'issuer'];
   
   availableStocksDataSource = new MatTableDataSource<StockResponseInterface>([]);
   adquiredStocksDataSource = new MatTableDataSource<OwnStockResponseInterface>([]);
@@ -53,6 +53,7 @@ export class SummaryPage  implements OnInit, AfterViewInit{
   buyIcon: IconButtonInterface;
   eyeIcon: IconButtonInterface;
   sellIcon: IconButtonInterface;
+  transferIcon: IconButtonInterface;
   userFirstName: string = '';
 
   viewDetail: boolean = false;
@@ -71,6 +72,7 @@ export class SummaryPage  implements OnInit, AfterViewInit{
     this.buyIcon = JSON_ICON_BUTTON.buyIcon;
     this.eyeIcon = JSON_ICON_BUTTON.eyeIcon;
     this.sellIcon = JSON_ICON_BUTTON.sellIcon;
+    this.transferIcon = JSON_ICON_BUTTON.transferIcon;
     this.userFirstName = this.userService.currentUser.firstName;
   }
 
@@ -190,12 +192,19 @@ export class SummaryPage  implements OnInit, AfterViewInit{
     this.router.navigate(['/sell'])
   }
 
+  transferStock(stockResponse: StockResponseInterface) {
+    this.dataFlowService.preloadTicker(stockResponse.ticker)
+    this.router.navigate(['/transfer'])
+  }
+
   formattedType(type: string): string {
     switch(type) {
       case 'buy':
         return 'Compra';
       case 'sell':
         return 'Venta';
+      case 'transfer':
+        return 'Transferencia';
       default:
         return '';
     }

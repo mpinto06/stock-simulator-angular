@@ -11,5 +11,6 @@
     "transactions": "/transaction/all",
     "sellStock": "/transaction/sell",
     "verifyUser": "/user/confirm",
-    "deleteUser": "/user/delete"
+    "deleteUser": "/user/delete",
+    "transferStock": "/transaction/transfer"
 }
