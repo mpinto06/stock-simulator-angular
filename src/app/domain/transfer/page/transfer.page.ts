@@ -124,6 +124,11 @@ export class TransferPage implements OnInit {
         for (let stock of this.ownedStocks) {
           this.ownedStocksString.push(stock.ticker);
         }
+
+        if (this.dataFlowService.selectedTicker != '' ) {
+          this.formGroup.get('ticker')?.setValue(this.dataFlowService.selectedTicker);
+          this.dataFlowService.cleanData();
+        }  
       }
       else {
         this.standardCard.message = 'withoutStock';
@@ -138,11 +143,6 @@ export class TransferPage implements OnInit {
       }
       this.loadingService.hide();
     })
-
-    if (this.dataFlowService.selectedTicker != '' ) {
-      this.formGroup.get('ticker')?.setValue(this.dataFlowService.selectedTicker);
-      this.dataFlowService.cleanData();
-    }  
   }
 
   redirectToSummary() {

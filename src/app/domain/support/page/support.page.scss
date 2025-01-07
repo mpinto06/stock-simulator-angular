@@ -1,3 +1,52 @@
-:host {
-  display: block;
+@import 'constants';
+@import 'base';
+
+#support-page {
+  width: 96%;
+  min-height:  calc(120vh);
+  background-color: #232332;
+  margin-top: 80px;
+  padding: 30px;
+  top: 100vh;
+  animation: 1s fadeIn forwards;
+
+  .title-container {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .description-container {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .table {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+
+  .main-container {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    min-height: 200px;
+
+    .right-side {
+      width: 500px;
+    }
+  }
+
+
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.textarea {
+  min-height: 100px;
 }

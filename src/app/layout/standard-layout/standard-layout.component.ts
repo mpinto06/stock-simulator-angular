@@ -30,7 +30,7 @@ import { filter } from 'rxjs/operators';
 })
 export class StandardLayoutComponent implements OnInit{ 
   openMenu: boolean = true;
-  loggedPaths = ['/summary', '/buy', '/sell', '/transfer' , '/confirm', '/edit'];
+  loggedPaths = ['/summary', '/buy', '/sell', '/transfer' , '/confirm', '/edit', '/support'];
 
   constructor(
     private loadingService: LoadingService,

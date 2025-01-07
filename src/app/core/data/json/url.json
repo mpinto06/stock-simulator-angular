@@ -12,5 +12,8 @@
     "sellStock": "/transaction/sell",
     "verifyUser": "/user/confirm",
     "deleteUser": "/user/delete",
-    "transferStock": "/transaction/transfer"
+    "transferStock": "/transaction/transfer",
+    "createForm": "/contact/add",
+    "allForms": "/contact/all",
+    "removeForm": "/contact/delete"
 }

@@ -1,13 +1,13 @@
 @if (show) {
-    <div class="fade-background" [ngClass]="{'active':show}" (click)="close()">
-      <div class="modal-card" (click)="$event.stopPropagation()">
-        <div class="title" [innerHTML]="modalData.title"></div>
-        <div class="description" [innerHTML]="modalData.description"></div>
-        <div class="button-container">
-            <button class="button-wrapper secondary" (click)="close()">Cancelar</button>
-            <button class="button-wrapper delete" (click)="confirmEvent()" [innerHTML]="modalData.deleteText"></button>
-          </div>
-      </div>
-      
+  <div class="fade-background" [ngClass]="{'active':show}" (click)="close()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="title" [innerHTML]="modalData.title"></div>
+      <div class="description" [innerHTML]="modalData.description"></div>
+      <div class="button-container">
+          <button class="button-wrapper secondary" (click)="close()">Cancelar</button>
+          <button class="button-wrapper delete" (click)="confirmEvent()" [innerHTML]="modalData.deleteText"></button>
+        </div>
     </div>
-  }
+    
+  </div>
+}

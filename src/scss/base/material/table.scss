@@ -3,32 +3,33 @@
         &.mat-mdc-tab-body {
             .mat-mdc-tab-body-content {
                 overflow: hidden;
-                .mat-mdc-table {
-                    background-color: transparent;
+            }
+        }
+    }
 
-                    thead {
-                        .mat-mdc-header-row {
-                            .mat-mdc-header-cell {
-                                border-bottom-color: $stock-strips;
-                                font-family: $stock-font;
-                                color: $stock-font-color;
-                                font-weight: bold;
-                            }
-                        }
-                    }
+    .mat-mdc-table {
+        background-color: transparent !important;
 
-                    tbody {
-                        .mat-mdc-row {
-                            .mat-mdc-cell {
-                                border-bottom-color: $stock-strips;
-                                font-family: $stock-font;
-                                color: $stock-font-color;
-                            }
-                        }
-                    }
-
+        thead {
+            .mat-mdc-header-row {
+                .mat-mdc-header-cell {
+                    border-bottom-color: $stock-strips;
+                    font-family: $stock-font;
+                    color: $stock-font-color;
+                    font-weight: bold;
                 }
             }
         }
+
+        tbody {
+            .mat-mdc-row {
+                .mat-mdc-cell {
+                    border-bottom-color: $stock-strips;
+                    font-family: $stock-font;
+                    color: $stock-font-color;
+                }
+            }
+        }
+
     }
 }

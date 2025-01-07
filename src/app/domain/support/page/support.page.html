@@ -1,1 +1,41 @@
-<p>support works!</p>,
+<div id="support-page">
+    <div class="main-container">
+        <div class="left-side">
+            <div class="title-container">
+                Contacto y Soporte
+            </div>
+            <div class="description-container">
+                @if (currentUser.admin) {
+                    Reclamos, sugerencias y solicitudes de soporte realizadas por usuarios. 
+                }
+                @else {
+                    Cualquier sugerencia, reclamo o ayuda que necesitas no dudes en gestionarla aqui. Nuestro equipo responderá lo más pronto posible. 
+                }
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="button-container">
+                @if (!currentUser.admin) {
+                    <button class="button-wrapper primary" (click)="createForm()">Crear</button>
+                }
+                <button class="button-wrapper delete" [disabled]="formIds.length == 0" (click)="confirmModal()">Resolver</button>
+              </div>
+        </div>
+    </div>
+    @if (loaded) {
+        <stock-user-support [supportFormData]="supportFormsData"></stock-user-support>
+    }
+</div>
+<stock-custom-modal [modalData]="customModal">
+    <ng-container modal-content>
+        <mat-form-field >
+            <mat-label>Texto</mat-label>
+            <textarea class="textarea" matInput [formControl]="textField"></textarea>
+        </mat-form-field>
+        <div class="button-container">
+            <button class="button-wrapper secondary" (click)="closeModal()">Cancelar</button>
+            <button class="button-wrapper primary" [disabled]="!textField.value" (click)="submitForm()">Crear</button>
+        </div>
+    </ng-container>
+</stock-custom-modal>
+<stock-confirm-delete-modal [modalData]="deleteModal" (confirm)="removeFormService()"></stock-confirm-delete-modal>

@@ -24,9 +24,6 @@ export class StockService {
     private appUtil: AppUtilService,
     private http: HttpClient,
     private storageService: StorageService,
-    private notificationService: NotificationService,
-    private router: Router,
-    private userService: UserService
   ) { 
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',

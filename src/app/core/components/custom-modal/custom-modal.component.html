@@ -1,0 +1,10 @@
+@if (show) {
+    <div class="fade-background" [ngClass]="{'active':show}" (click)="close()">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <div class="title" [innerHTML]="modalData.title"></div>
+        <div class="description" [innerHTML]="modalData.description"></div>
+        <ng-content select="[modal-content]"></ng-content>
+      </div>
+      
+    </div>
+  }
